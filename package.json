@@ -1,0 +1,27 @@
+{
+  "name": "practicas-capa-dominio-api-http",
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Practicas 3 y 4 - Dominio y API HTTP",
+  "scripts": {
+    "cliente": "node scripts/build-client.mjs",
+    "predev": "npm run cliente",
+    "dev": "tsx src/http/servidor.ts",
+    "preservidor": "npm run cliente",
+    "servidor": "tsx src/http/servidor.ts",
+    "p3:dev": "tsx src/main.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test src/servicios/prestamo.service.test.ts",
+    "build": "tsc",
+    "start": "node dist/src/main.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@types/express": "^5.0.6",
+    "@types/node": "^24.0.0",
+    "tsx": "^4.0.0",
+    "typescript": "^6.0.0"
+  }
+}

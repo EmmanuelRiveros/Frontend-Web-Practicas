@@ -1,0 +1,43 @@
+# Practica 4 - Peticiones de prueba para REST Client
+# Antes de enviarlas, ejecutar: npm run dev
+
+### 1. Listar prestamos del libro - 200 [] al inicio
+GET http://localhost:3000/api/prestamos?libroId=LIB-0417
+
+### 2. Crear un prestamo - 201 y cabecera Location
+POST http://localhost:3000/api/prestamos
+Content-Type: application/json
+
+{
+  "libroId": "LIB-0417",
+  "socioId": "S-001",
+  "ejemplares": [14, 15]
+}
+
+### 3. Repetir el mismo ejemplar - 409
+POST http://localhost:3000/api/prestamos
+Content-Type: application/json
+
+{
+  "libroId": "LIB-0417",
+  "socioId": "S-002",
+  "ejemplares": [15, 16]
+}
+
+### 4. JSON que no cumple el contrato - 400 con detalles
+POST http://localhost:3000/api/prestamos
+Content-Type: application/json
+
+{
+  "libroId": "",
+  "ejemplares": "muchos"
+}
+
+### 5. Falta libroId - 400
+GET http://localhost:3000/api/prestamos
+
+### 6. Ruta inexistente - 404
+DELETE http://localhost:3000/api/otra-cosa
+
+### 7. Cliente HTML
+GET http://localhost:3000/
