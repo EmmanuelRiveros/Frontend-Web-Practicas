@@ -1,4 +1,4 @@
-# Practicas 3 y 4 Dominio y API HTTP
+# Practicas Dominio y API HTTP
 
 Solucion de la practica sobre la capa de dominio de un sistema de prestamos de biblioteca.
 
@@ -37,10 +37,6 @@ Si el servicio recibiera `InMemoryPrestamoRepository`, quedaria amarrado a esa i
 
 En principio se tocaria el archivo de infraestructura donde esta `InMemoryPrestamoRepository`, creando otra clase que implemente el mismo contrato. Tambien se cambiaria el ensamblaje de `main.ts` para instanciar la nueva clase. El servicio, los DTO y la regla de negocio se quedan igual porque dependen de interfaces, no de la tecnologia de almacenamiento.
 
-## Repositorio
-
-https://github.com/EmmanuelRiveros/Frontend-Web-Practicas
-
 ---
 
 # Practica 4 De la capa de dominio a una API HTTP
@@ -55,25 +51,3 @@ npm run dev
 ```
 
 También funciona `npm run servidor`. Al iniciar, abre `http://localhost:3000` para usar el cliente HTML o abre `practica4.http` con la extensión REST Client de VS Code para enviar las peticiones de prueba.
-
-## Respuestas esperadas
-
-- `GET /api/prestamos?libroId=LIB-0417` responde `200` y una lista, vacía al inicio.
-- El primer `POST /api/prestamos` responde `201` e incluye la cabecera `Location`.
-- Repetir el ejemplar 15 responde `409`.
-- Mandar `libroId` vacío, omitir `socioId` o enviar `ejemplares` con un tipo incorrecto responde `400` y regresa todos los detalles detectados.
-- Una ruta que no existe responde `404`.
-
-## Respuestas de reflexión de la práctica 4
-
-### 1. Qué pasaría sin el manejo async de Express
-
-Cada ruta async tendría que envolver su código en `try/catch` y pasar el error con `next(error)`. Sin eso, un rechazo de una promesa no llegaría al middleware central de errores y terminaríamos repitiendo la misma lógica en todas las rutas.
-
-### 2. Por qué el Service no lanza un 409
-
-El Service sabe de préstamos, no de HTTP. Para él, el problema es que un ejemplar ya está prestado, por eso lanza `EjemplarPrestadoError`. La capa HTTP es la que entiende que ese error debe viajar como un `409 Conflict`. Así la misma regla se puede usar después desde otro tipo de cliente sin meter códigos HTTP en el dominio.
-
-### 3. Qué cambiaría para una app móvil
-
-La app móvil puede consumir las mismas rutas y los mismos contratos de `contratos/prestamo.dto.ts`. Para agregarla no tendría que tocar el dominio, el Service ni el repositorio. Solo crearía el cliente móvil y, si necesitara campos o rutas nuevas, ajustaría el contrato y la capa HTTP de forma consciente.
