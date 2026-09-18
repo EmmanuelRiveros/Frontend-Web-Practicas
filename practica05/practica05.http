@@ -1,0 +1,17 @@
+### 1. Ruta inicial generada por NestJS
+GET http://localhost:3000/
+
+### 2. Catálogo inicial de clases
+GET http://localhost:3000/clases
+
+### 3. Agregar una clase
+POST http://localhost:3000/clases
+Content-Type: application/json
+
+{
+  "identificador": "CL-003",
+  "nombre": "Zumba"
+}
+
+### 4. Confirmar que la lista creció
+GET http://localhost:3000/clases
