@@ -1,0 +1,495 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Práctica 9 Respuestas HTTP reales</title><style>*{box-sizing:border-box}body{font:17px Arial,sans-serif;background:#f1f5f7;color:#182a38;margin:0;padding:28px}main{max-width:1100px;margin:auto}h1{font-size:26px;margin:0 0 8px}h2{font-size:20px;margin:0 0 16px}h3{color:#9a3825;font-size:21px;margin:0 0 14px}article{background:white;border:1px solid #bdcdd5;border-radius:8px;padding:22px;margin:22px 0;break-inside:avoid}.request{background:#edf3f6;padding:18px}.response{padding:18px 0 0}pre{white-space:pre-wrap;overflow-wrap:anywhere;font:15px/1.4 Consolas,monospace;margin:12px 0}p{margin:10px 0;color:#40586a}</style><main><h1>Práctica 9 Pruebas de la API con MySQL</h1><p>Respuestas obtenidas por scripts/verificar-api.mjs mediante peticiones HTTP reales. Fecha UTC: 2026-10-06T20:20:41.586Z</p><article data-numero="1"><h2>1. Primera inscripcion  -&gt;  201 + header Location</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 1,
+  "miembroId": 1
+}</pre></div><div class="response"><h3>HTTP 201</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+location: /inscripciones/1
+vary: Origin
+x-request-id: d089b36a-5bfd-4703-be60-ef1646c5085d</pre><pre>{
+  "id": 1,
+  "horarioId": 1,
+  "miembroId": 1,
+  "estado": "confirmada",
+  "creadaEn": "2026-10-06T20:20:41.397Z"
+}</pre></div></article><article data-numero="2"><h2>2. Segunda inscripcion, se llena el cupo  -&gt;  201</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 1,
+  "miembroId": 2
+}</pre></div><div class="response"><h3>HTTP 201</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+location: /inscripciones/2
+vary: Origin
+x-request-id: 53d2670b-e40b-47ae-8f27-56c0926b0faf</pre><pre>{
+  "id": 2,
+  "horarioId": 1,
+  "miembroId": 2,
+  "estado": "confirmada",
+  "creadaEn": "2026-10-06T20:20:41.426Z"
+}</pre></div></article><article data-numero="3"><h2>3. REGLA 1 - tercera inscripcion  -&gt;  409 cupo lleno</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 1,
+  "miembroId": 3
+}</pre></div><div class="response"><h3>HTTP 409</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 89a6728d-bf09-41c8-b32c-1dc189ddf065</pre><pre>{
+  "statusCode": 409,
+  "error": "CupoLlenoError",
+  "message": "El horario 1 ya tiene 2 inscripciones confirmadas",
+  "path": "/inscripciones",
+  "timestamp": "2026-10-06T20:20:41.436Z"
+}</pre></div></article><article data-numero="4"><h2>4. REGLA 2 - el miembro 1 otra vez  -&gt;  409 duplicada</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 1,
+  "miembroId": 1
+}</pre></div><div class="response"><h3>HTTP 409</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: fa01338c-6def-45b7-97b2-f4fdb2386f3a</pre><pre>{
+  "statusCode": 409,
+  "error": "InscripcionDuplicadaError",
+  "message": "El miembro 1 ya esta inscrito en el horario 1",
+  "path": "/inscripciones",
+  "timestamp": "2026-10-06T20:20:41.441Z"
+}</pre></div></article><article data-numero="5"><h2>5. Un horario que no existe  -&gt;  404</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 99,
+  "miembroId": 1
+}</pre></div><div class="response"><h3>HTTP 404</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: e0d6f584-6bdc-4b7c-a235-fb02585fc1c5</pre><pre>{
+  "statusCode": 404,
+  "error": "HorarioNoEncontradoError",
+  "message": "No existe el horario 99",
+  "path": "/inscripciones",
+  "timestamp": "2026-10-06T20:20:41.445Z"
+}</pre></div></article><article data-numero="6"><h2>6. Un miembro que no existe  -&gt;  404</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 3,
+  "miembroId": 99
+}</pre></div><div class="response"><h3>HTTP 404</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 05dc8880-5321-48d0-b11a-e9e9b48eb435</pre><pre>{
+  "statusCode": 404,
+  "error": "MiembroNoEncontradoError",
+  "message": "No existe el miembro 99",
+  "path": "/inscripciones",
+  "timestamp": "2026-10-06T20:20:41.449Z"
+}</pre></div></article><article data-numero="7"><h2>7. Cuerpo mal formado  -&gt;  400, NO 409</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": "hola"
+}</pre></div><div class="response"><h3>HTTP 400</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: ed3a3d81-6e27-40e6-b593-e42da9c35764</pre><pre>{
+  "message": [
+    "horarioId must not be less than 1",
+    "horarioId must be an integer number",
+    "miembroId must not be less than 1",
+    "miembroId must be an integer number"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}</pre></div></article><article data-numero="8"><h2>8. Listar todas  -&gt;  200</h2><div class="request"><b>GET http://localhost:3000/inscripciones</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: c820419e-f16d-4ed9-bd23-dabaed8bcbf1</pre><pre>[
+  {
+    "id": 1,
+    "horarioId": 1,
+    "miembroId": 1,
+    "estado": "confirmada",
+    "creadaEn": "2026-10-06T20:20:41.397Z"
+  },
+  {
+    "id": 2,
+    "horarioId": 1,
+    "miembroId": 2,
+    "estado": "confirmada",
+    "creadaEn": "2026-10-06T20:20:41.426Z"
+  }
+]</pre></div></article><article data-numero="9"><h2>9. Cancelar la primera  -&gt;  200 con estado "cancelada"</h2><div class="request"><b>DELETE http://localhost:3000/inscripciones/1</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 113ff3ab-8322-41d8-872c-577ddf51b732</pre><pre>{
+  "id": 1,
+  "horarioId": 1,
+  "miembroId": 1,
+  "estado": "cancelada",
+  "creadaEn": "2026-10-06T20:20:41.397Z"
+}</pre></div></article><article data-numero="10"><h2>10. EL REMATE DE LA CLASE  -&gt;  201</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 1,
+  "miembroId": 3
+}</pre></div><div class="response"><h3>HTTP 201</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+location: /inscripciones/3
+vary: Origin
+x-request-id: ae9adf5d-53d5-418d-a883-b5ff2ddd7f63</pre><pre>{
+  "id": 3,
+  "horarioId": 1,
+  "miembroId": 3,
+  "estado": "confirmada",
+  "creadaEn": "2026-10-06T20:20:41.468Z"
+}</pre></div></article><article data-numero="11"><h2>11. Clases - listar (las dos del seed)  -&gt;  200</h2><div class="request"><b>GET http://localhost:3000/clases</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: fc11c949-166f-4620-ac3c-0568cdcf26e7</pre><pre>[
+  {
+    "id": 1,
+    "nombre": "Yoga",
+    "descripcion": null
+  },
+  {
+    "id": 2,
+    "nombre": "Spinning",
+    "descripcion": null
+  }
+]</pre></div></article><article data-numero="12"><h2>12. Clases - crear  -&gt;  201</h2><div class="request"><b>POST http://localhost:3000/clases</b><pre>{
+  "nombre": "Funcional"
+}</pre></div><div class="response"><h3>HTTP 201</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: d25fe8ed-e95f-4e4c-bc47-7b5cf57bb1f2</pre><pre>{
+  "id": 3,
+  "nombre": "Funcional",
+  "descripcion": null
+}</pre></div></article><article data-numero="13"><h2>13. Clases - buscar por id  -&gt;  200</h2><div class="request"><b>GET http://localhost:3000/clases/3</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 8e55f942-bfe8-42ae-a48a-308608f43d00</pre><pre>{
+  "id": 3,
+  "nombre": "Funcional",
+  "descripcion": null
+}</pre></div></article><article data-numero="14"><h2>14. Clases - actualizar el nombre (PATCH)  -&gt;  200</h2><div class="request"><b>PATCH http://localhost:3000/clases/3</b><pre>{
+  "nombre": "Funcional Avanzado"
+}</pre></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 3c86a662-1bef-42d5-b9f5-242ca1e9d499</pre><pre>{
+  "id": 3,
+  "nombre": "Funcional Avanzado",
+  "descripcion": null
+}</pre></div></article><article data-numero="15"><h2>15. Clases - un id que no existe  -&gt;  404</h2><div class="request"><b>GET http://localhost:3000/clases/99</b></div><div class="response"><h3>HTTP 404</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 98ddb1a9-5fc6-49bc-a030-a6dc2f06e6b4</pre><pre>{
+  "message": "No existe la clase 99",
+  "error": "Not Found",
+  "statusCode": 404
+}</pre></div></article><article data-numero="16"><h2>16. Clases - eliminar  -&gt;  200</h2><div class="request"><b>DELETE http://localhost:3000/clases/3</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: f0d6e8e6-2e13-491d-a3b7-d64370a3d12d</pre><pre>{
+  "id": 3,
+  "nombre": "Funcional Avanzado",
+  "descripcion": null
+}</pre></div></article><article data-numero="17"><h2>17. Miembros - listar (los tres del seed)  -&gt;  200</h2><div class="request"><b>GET http://localhost:3000/miembros</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 689e338e-ae27-408c-b574-21d6b5cfdbd3</pre><pre>[
+  {
+    "id": 1,
+    "nombre": "Karla Duarte",
+    "correo": "karla@itson.mx",
+    "membresia": "premium",
+    "activo": true
+  },
+  {
+    "id": 2,
+    "nombre": "Omar Valdez",
+    "correo": "omar@itson.mx",
+    "membresia": "plus",
+    "activo": true
+  },
+  {
+    "id": 3,
+    "nombre": "Sofia Ibarra",
+    "correo": "sofia@itson.mx",
+    "membresia": "basica",
+    "activo": true
+  }
+]</pre></div></article><article data-numero="18"><h2>18. Miembros - crear  -&gt;  201</h2><div class="request"><b>POST http://localhost:3000/miembros</b><pre>{
+  "nombre": "Luis Prueba",
+  "correo": "luis@itson.mx",
+  "membresia": "basica"
+}</pre></div><div class="response"><h3>HTTP 201</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: ca7c5fcd-c859-4a2b-9647-5f68732f949a</pre><pre>{
+  "id": 4,
+  "nombre": "Luis Prueba",
+  "correo": "luis@itson.mx",
+  "membresia": "basica",
+  "activo": true
+}</pre></div></article><article data-numero="19"><h2>19. Miembros - buscar por id  -&gt;  200</h2><div class="request"><b>GET http://localhost:3000/miembros/4</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: d79e1a11-1eb3-490f-a79e-75b721d821c4</pre><pre>{
+  "id": 4,
+  "nombre": "Luis Prueba",
+  "correo": "luis@itson.mx",
+  "membresia": "basica",
+  "activo": true
+}</pre></div></article><article data-numero="20"><h2>20. Miembros - dar de baja (PATCH activo:false)  -&gt;  200</h2><div class="request"><b>PATCH http://localhost:3000/miembros/4</b><pre>{
+  "activo": false
+}</pre></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 55f86346-3962-45af-b8e2-b59e5942ffee</pre><pre>{
+  "id": 4,
+  "nombre": "Luis Prueba",
+  "correo": "luis@itson.mx",
+  "membresia": "basica",
+  "activo": false
+}</pre></div></article><article data-numero="21"><h2>21. Miembros - un id que no existe  -&gt;  404</h2><div class="request"><b>GET http://localhost:3000/miembros/99</b></div><div class="response"><h3>HTTP 404</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: f7d7eeb3-9a4c-4a44-8f92-761aaa177449</pre><pre>{
+  "message": "No existe el miembro 99",
+  "error": "Not Found",
+  "statusCode": 404
+}</pre></div></article><article data-numero="22"><h2>22. Miembros - eliminar  -&gt;  200</h2><div class="request"><b>DELETE http://localhost:3000/miembros/4</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: fd2b3b7a-f554-4e10-8036-d7c4dbb87f02</pre><pre>{
+  "id": 4,
+  "nombre": "Luis Prueba",
+  "correo": "luis@itson.mx",
+  "membresia": "basica",
+  "activo": false
+}</pre></div></article><article data-numero="23"><h2>23. Horarios - listar (los tres del seed)  -&gt;  200</h2><div class="request"><b>GET http://localhost:3000/horarios</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 743cd30e-08ca-425f-8c60-a3c6ce487c7e</pre><pre>[
+  {
+    "id": 1,
+    "claseId": 1,
+    "dia": "lunes",
+    "horaInicio": "07:00",
+    "cupoMaximo": 2,
+    "entrenador": "Ana Robles"
+  },
+  {
+    "id": 2,
+    "claseId": 1,
+    "dia": "miercoles",
+    "horaInicio": "07:00",
+    "cupoMaximo": 3,
+    "entrenador": "Ana Robles"
+  },
+  {
+    "id": 3,
+    "claseId": 2,
+    "dia": "martes",
+    "horaInicio": "19:00",
+    "cupoMaximo": 4,
+    "entrenador": "Luis Fierro"
+  }
+]</pre></div></article><article data-numero="24"><h2>24. Horarios - crear  -&gt;  201</h2><div class="request"><b>POST http://localhost:3000/horarios</b><pre>{
+  "claseId": 2,
+  "dia": "jueves",
+  "horaInicio": "18:00",
+  "cupoMaximo": 5,
+  "entrenador": "Luis Fierro"
+}</pre></div><div class="response"><h3>HTTP 201</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 54585674-77f5-4448-aa08-b8af63c4e8ce</pre><pre>{
+  "id": 4,
+  "claseId": 2,
+  "dia": "jueves",
+  "horaInicio": "18:00",
+  "cupoMaximo": 5,
+  "entrenador": "Luis Fierro"
+}</pre></div></article><article data-numero="25"><h2>25. Horarios - actualizar el cupo  -&gt;  200</h2><div class="request"><b>PATCH http://localhost:3000/horarios/4</b><pre>{
+  "cupoMaximo": 6
+}</pre></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: ab3c0ebe-8ef0-4f1e-9001-25cff6a133ca</pre><pre>{
+  "id": 4,
+  "claseId": 2,
+  "dia": "jueves",
+  "horaInicio": "18:00",
+  "cupoMaximo": 6,
+  "entrenador": "Luis Fierro"
+}</pre></div></article><article data-numero="26"><h2>26. Horarios - un id que no existe  -&gt;  404</h2><div class="request"><b>GET http://localhost:3000/horarios/99</b></div><div class="response"><h3>HTTP 404</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 4bfe3cab-945a-4f4d-b235-98fb0c8e53c9</pre><pre>{
+  "message": "No existe el horario 99",
+  "error": "Not Found",
+  "statusCode": 404
+}</pre></div></article><article data-numero="27"><h2>27. Horarios - eliminar  -&gt;  200</h2><div class="request"><b>DELETE http://localhost:3000/horarios/4</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 07294078-e0fe-405b-ace4-073c3dbb0692</pre><pre>{
+  "id": 4,
+  "claseId": 2,
+  "dia": "jueves",
+  "horaInicio": "18:00",
+  "cupoMaximo": 6,
+  "entrenador": "Luis Fierro"
+}</pre></div></article><article data-numero="28"><h2>28. Clases - falta el nombre  -&gt;  400, lo rechaza el ValidationPipe</h2><div class="request"><b>POST http://localhost:3000/clases</b></div><div class="response"><h3>HTTP 400</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: c8bdcdd9-146c-4c0b-82ca-83ffc5cd3497</pre><pre>{
+  "message": [
+    "nombre must be shorter than or equal to 80 characters",
+    "nombre should not be empty",
+    "nombre must be a string"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}</pre></div></article><article data-numero="29"><h2>29. Clases - campo que no existe en el DTO  -&gt;  400 (forbidNonWhitelisted)</h2><div class="request"><b>POST http://localhost:3000/clases</b><pre>{
+  "nombre": "Boxeo",
+  "hackeame": true
+}</pre></div><div class="response"><h3>HTTP 400</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 4071b308-dd8b-432c-842f-4ad9c9357e64</pre><pre>{
+  "message": [
+    "property hackeame should not exist"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}</pre></div></article><article data-numero="30"><h2>30. Miembros - correo mal formado  -&gt;  400</h2><div class="request"><b>POST http://localhost:3000/miembros</b><pre>{
+  "nombre": "Test",
+  "correo": "no-es-un-correo",
+  "membresia": "basica"
+}</pre></div><div class="response"><h3>HTTP 400</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 3f1afe00-ded6-4fd6-b5a2-abe02303b083</pre><pre>{
+  "message": [
+    "correo must be an email"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}</pre></div></article><article data-numero="31"><h2>31. Cualquier respuesta trae X-Request-Id en los encabezados</h2><div class="request"><b>GET http://localhost:3000/clases</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 11f20bb4-6f23-473a-8dcc-993008e25d73</pre><pre>[
+  {
+    "id": 1,
+    "nombre": "Yoga",
+    "descripcion": null
+  },
+  {
+    "id": 2,
+    "nombre": "Spinning",
+    "descripcion": null
+  }
+]</pre></div></article><article data-numero="32"><h2>32. Un horario que no existe  -&gt;  404, ahora con la forma que arma</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 99,
+  "miembroId": 1
+}</pre></div><div class="response"><h3>HTTP 404</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 2ca285bc-8f2b-4f2e-a3d9-46d1c5009731</pre><pre>{
+  "statusCode": 404,
+  "error": "HorarioNoEncontradoError",
+  "message": "No existe el horario 99",
+  "path": "/inscripciones",
+  "timestamp": "2026-10-06T20:20:41.557Z"
+}</pre></div></article><article data-numero="33"><h2>33. Tipo equivocado en identificador -&gt; 400</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": "uno",
+  "miembroId": 1
+}</pre></div><div class="response"><h3>HTTP 400</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 53bc484c-7de4-41b2-b76e-8978f8d17153</pre><pre>{
+  "message": [
+    "horarioId must not be less than 1",
+    "horarioId must be an integer number"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}</pre></div></article><article data-numero="34"><h2>34. Campo desconocido -&gt; 400</h2><div class="request"><b>POST http://localhost:3000/clases</b><pre>{
+  "nombre": "Boxeo",
+  "campoExtra": true
+}</pre></div><div class="response"><h3>HTTP 400</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: d4582af5-634c-44f5-b7a4-a61c09a2bba8</pre><pre>{
+  "message": [
+    "property campoExtra should not exist"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}</pre></div></article><article data-numero="35"><h2>35. Membresia no permitida -&gt; 400</h2><div class="request"><b>POST http://localhost:3000/miembros</b><pre>{
+  "nombre": "Prueba",
+  "correo": "prueba@example.com",
+  "membresia": "vip"
+}</pre></div><div class="response"><h3>HTTP 400</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: e8b9203b-bff8-42cf-89bf-6343f16a50ae</pre><pre>{
+  "message": [
+    "membresia must be one of the following values: basica, plus, premium"
+  ],
+  "error": "Bad Request",
+  "statusCode": 400
+}</pre></div></article><article data-numero="36"><h2>36. CORS origen permitido -&gt; 200</h2><div class="request"><b>GET http://localhost:3000/clases</b><p>Origin: http://localhost:5173</p></div><div class="response"><h3>HTTP 200</h3><pre>access-control-allow-origin: http://localhost:5173
+access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 1d8e7adc-6bce-4d65-bdb1-258cda1c0f9d</pre><pre>[
+  {
+    "id": 1,
+    "nombre": "Yoga",
+    "descripcion": null
+  },
+  {
+    "id": 2,
+    "nombre": "Spinning",
+    "descripcion": null
+  }
+]</pre></div></article><article data-numero="37"><h2>37. CORS origen no permitido -&gt; 200 sin Access-Control-Allow-Origin</h2><div class="request"><b>GET http://localhost:3000/clases</b><p>Origin: http://localhost:9999</p></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 11d604c9-0dea-48b1-bcb2-efe01c3c0e3a</pre><pre>[
+  {
+    "id": 1,
+    "nombre": "Yoga",
+    "descripcion": null
+  },
+  {
+    "id": 2,
+    "nombre": "Spinning",
+    "descripcion": null
+  }
+]</pre></div></article><article data-numero="38"><h2>38. CORS segundo origen permitido -&gt; 200</h2><div class="request"><b>GET http://localhost:3000/clases</b><p>Origin: http://localhost:3001</p></div><div class="response"><h3>HTTP 200</h3><pre>access-control-allow-origin: http://localhost:3001
+access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 24d2808c-5514-48f8-9512-c9aa8cb16aea</pre><pre>[
+  {
+    "id": 1,
+    "nombre": "Yoga",
+    "descripcion": null
+  },
+  {
+    "id": 2,
+    "nombre": "Spinning",
+    "descripcion": null
+  }
+]</pre></div></article><article data-numero="39"><h2>39. Cancelar para comprobar reinscripcion -&gt; 200</h2><div class="request"><b>DELETE http://localhost:3000/inscripciones/3</b></div><div class="response"><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 9315d4ab-537c-4b39-adb0-57541fac5d6e</pre><pre>{
+  "id": 3,
+  "horarioId": 1,
+  "miembroId": 3,
+  "estado": "cancelada",
+  "creadaEn": "2026-10-06T20:20:41.468Z"
+}</pre></div></article><article data-numero="40"><h2>40. Reinscribir misma pareja cancelada -&gt; 201</h2><div class="request"><b>POST http://localhost:3000/inscripciones</b><pre>{
+  "horarioId": 1,
+  "miembroId": 1
+}</pre></div><div class="response"><h3>HTTP 201</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+location: /inscripciones/1
+vary: Origin
+x-request-id: 10cc5cba-0848-4865-b493-41e9ce44dad8</pre><pre>{
+  "id": 1,
+  "horarioId": 1,
+  "miembroId": 1,
+  "estado": "confirmada",
+  "creadaEn": "2026-10-06T20:20:41.578Z"
+}</pre></div></article></main><script>const nums=new URLSearchParams(location.search).get("casos");if(nums){const s=new Set(nums.split(","));document.querySelectorAll("article").forEach(a=>{if(!s.has(a.dataset.numero))a.remove()})}</script></html>

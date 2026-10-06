@@ -1,0 +1,1460 @@
+{
+  "fecha": "2026-10-06T20:20:41.583Z",
+  "host": "http://localhost:3000",
+  "resultados": [
+    {
+      "numero": 1,
+      "titulo": "1. Primera inscripcion  ->  201 + header Location",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 1,
+          "miembroId": 1
+        }
+      },
+      "respuesta": {
+        "estado": 201,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "96",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"60-x8UF8M0nNsl1029c65j2H8S69Mo\"",
+          "keep-alive": "timeout=5",
+          "location": "/inscripciones/1",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "d089b36a-5bfd-4703-be60-ef1646c5085d"
+        },
+        "cuerpo": {
+          "id": 1,
+          "horarioId": 1,
+          "miembroId": 1,
+          "estado": "confirmada",
+          "creadaEn": "2026-10-06T20:20:41.397Z"
+        }
+      },
+      "esperado": 201
+    },
+    {
+      "numero": 2,
+      "titulo": "2. Segunda inscripcion, se llena el cupo  ->  201",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 1,
+          "miembroId": 2
+        }
+      },
+      "respuesta": {
+        "estado": 201,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "96",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"60-oCNQOQ5AhBs3xzVUgzSSex4v8Kg\"",
+          "keep-alive": "timeout=5",
+          "location": "/inscripciones/2",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "53d2670b-e40b-47ae-8f27-56c0926b0faf"
+        },
+        "cuerpo": {
+          "id": 2,
+          "horarioId": 1,
+          "miembroId": 2,
+          "estado": "confirmada",
+          "creadaEn": "2026-10-06T20:20:41.426Z"
+        }
+      },
+      "esperado": 201
+    },
+    {
+      "numero": 3,
+      "titulo": "3. REGLA 1 - tercera inscripcion  ->  409 cupo lleno",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 1,
+          "miembroId": 3
+        }
+      },
+      "respuesta": {
+        "estado": 409,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "168",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"a8-hmbxrpd2ny0xiqkEXmyoqQynnwA\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "89a6728d-bf09-41c8-b32c-1dc189ddf065"
+        },
+        "cuerpo": {
+          "statusCode": 409,
+          "error": "CupoLlenoError",
+          "message": "El horario 1 ya tiene 2 inscripciones confirmadas",
+          "path": "/inscripciones",
+          "timestamp": "2026-10-06T20:20:41.436Z"
+        }
+      },
+      "esperado": 409
+    },
+    {
+      "numero": 4,
+      "titulo": "4. REGLA 2 - el miembro 1 otra vez  ->  409 duplicada",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 1,
+          "miembroId": 1
+        }
+      },
+      "respuesta": {
+        "estado": 409,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "175",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"af-kQAVmHztkPsSrUjlvK8sSy/rDyE\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "fa01338c-6def-45b7-97b2-f4fdb2386f3a"
+        },
+        "cuerpo": {
+          "statusCode": 409,
+          "error": "InscripcionDuplicadaError",
+          "message": "El miembro 1 ya esta inscrito en el horario 1",
+          "path": "/inscripciones",
+          "timestamp": "2026-10-06T20:20:41.441Z"
+        }
+      },
+      "esperado": 409
+    },
+    {
+      "numero": 5,
+      "titulo": "5. Un horario que no existe  ->  404",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 99,
+          "miembroId": 1
+        }
+      },
+      "respuesta": {
+        "estado": 404,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "152",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"98-C/DMftNIdQ4mR4En5LScIHmiAYE\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "e0d6f584-6bdc-4b7c-a235-fb02585fc1c5"
+        },
+        "cuerpo": {
+          "statusCode": 404,
+          "error": "HorarioNoEncontradoError",
+          "message": "No existe el horario 99",
+          "path": "/inscripciones",
+          "timestamp": "2026-10-06T20:20:41.445Z"
+        }
+      },
+      "esperado": 404
+    },
+    {
+      "numero": 6,
+      "titulo": "6. Un miembro que no existe  ->  404",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 3,
+          "miembroId": 99
+        }
+      },
+      "respuesta": {
+        "estado": 404,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "152",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"98-gsWo/zKoxg46b2dt51F/gZZNt1w\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "05dc8880-5321-48d0-b11a-e9e9b48eb435"
+        },
+        "cuerpo": {
+          "statusCode": 404,
+          "error": "MiembroNoEncontradoError",
+          "message": "No existe el miembro 99",
+          "path": "/inscripciones",
+          "timestamp": "2026-10-06T20:20:41.449Z"
+        }
+      },
+      "esperado": 404
+    },
+    {
+      "numero": 7,
+      "titulo": "7. Cuerpo mal formado  ->  400, NO 409",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": "hola"
+        }
+      },
+      "respuesta": {
+        "estado": 400,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "200",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"c8-yMaUmeRmYmEwU6U0W8QLRzcEzT8\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "ed3a3d81-6e27-40e6-b593-e42da9c35764"
+        },
+        "cuerpo": {
+          "message": [
+            "horarioId must not be less than 1",
+            "horarioId must be an integer number",
+            "miembroId must not be less than 1",
+            "miembroId must be an integer number"
+          ],
+          "error": "Bad Request",
+          "statusCode": 400
+        }
+      },
+      "esperado": 400
+    },
+    {
+      "numero": 8,
+      "titulo": "8. Listar todas  ->  200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "195",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"c3-zNzzcFaQLt+dPsOZ6lCnfWB/IXU\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "c820419e-f16d-4ed9-bd23-dabaed8bcbf1"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "horarioId": 1,
+            "miembroId": 1,
+            "estado": "confirmada",
+            "creadaEn": "2026-10-06T20:20:41.397Z"
+          },
+          {
+            "id": 2,
+            "horarioId": 1,
+            "miembroId": 2,
+            "estado": "confirmada",
+            "creadaEn": "2026-10-06T20:20:41.426Z"
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 9,
+      "titulo": "9. Cancelar la primera  ->  200 con estado \"cancelada\"",
+      "peticion": {
+        "metodo": "DELETE",
+        "ruta": "/inscripciones/1",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "95",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5f-ZKS+i7K/iCNoTuDfMKMbP+mlwqU\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "113ff3ab-8322-41d8-872c-577ddf51b732"
+        },
+        "cuerpo": {
+          "id": 1,
+          "horarioId": 1,
+          "miembroId": 1,
+          "estado": "cancelada",
+          "creadaEn": "2026-10-06T20:20:41.397Z"
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 10,
+      "titulo": "10. EL REMATE DE LA CLASE  ->  201",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 1,
+          "miembroId": 3
+        }
+      },
+      "respuesta": {
+        "estado": 201,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "96",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"60-SR8NfwOu/PdI9bivQ40h9Sp//Wc\"",
+          "keep-alive": "timeout=5",
+          "location": "/inscripciones/3",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "ae9adf5d-53d5-418d-a883-b5ff2ddd7f63"
+        },
+        "cuerpo": {
+          "id": 3,
+          "horarioId": 1,
+          "miembroId": 3,
+          "estado": "confirmada",
+          "creadaEn": "2026-10-06T20:20:41.468Z"
+        }
+      },
+      "esperado": 201
+    },
+    {
+      "numero": 11,
+      "titulo": "11. Clases - listar (las dos del seed)  ->  200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/clases",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "93",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5d-WQ0uwafVdTsa05OgVQ1S+KoT1J8\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "fc11c949-166f-4620-ac3c-0568cdcf26e7"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "nombre": "Yoga",
+            "descripcion": null
+          },
+          {
+            "id": 2,
+            "nombre": "Spinning",
+            "descripcion": null
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 12,
+      "titulo": "12. Clases - crear  ->  201",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/clases",
+        "origen": null,
+        "cuerpo": {
+          "nombre": "Funcional"
+        }
+      },
+      "respuesta": {
+        "estado": 201,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "48",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"30-6JlzmPQIBoHIAshwo57vUKCayp0\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "d25fe8ed-e95f-4e4c-bc47-7b5cf57bb1f2"
+        },
+        "cuerpo": {
+          "id": 3,
+          "nombre": "Funcional",
+          "descripcion": null
+        }
+      },
+      "esperado": 201
+    },
+    {
+      "numero": 13,
+      "titulo": "13. Clases - buscar por id  ->  200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/clases/3",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "48",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"30-6JlzmPQIBoHIAshwo57vUKCayp0\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "8e55f942-bfe8-42ae-a48a-308608f43d00"
+        },
+        "cuerpo": {
+          "id": 3,
+          "nombre": "Funcional",
+          "descripcion": null
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 14,
+      "titulo": "14. Clases - actualizar el nombre (PATCH)  ->  200",
+      "peticion": {
+        "metodo": "PATCH",
+        "ruta": "/clases/3",
+        "origen": null,
+        "cuerpo": {
+          "nombre": "Funcional Avanzado"
+        }
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "57",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"39-9QhKiSGmta3U2/+6hLrL8Kgpuyw\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "3c86a662-1bef-42d5-b9f5-242ca1e9d499"
+        },
+        "cuerpo": {
+          "id": 3,
+          "nombre": "Funcional Avanzado",
+          "descripcion": null
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 15,
+      "titulo": "15. Clases - un id que no existe  ->  404",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/clases/99",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 404,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "72",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"48-MwL9dGhRyGx3/KIOp5VTMxO7POA\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "98ddb1a9-5fc6-49bc-a030-a6dc2f06e6b4"
+        },
+        "cuerpo": {
+          "message": "No existe la clase 99",
+          "error": "Not Found",
+          "statusCode": 404
+        }
+      },
+      "esperado": 404
+    },
+    {
+      "numero": 16,
+      "titulo": "16. Clases - eliminar  ->  200",
+      "peticion": {
+        "metodo": "DELETE",
+        "ruta": "/clases/3",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "57",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"39-9QhKiSGmta3U2/+6hLrL8Kgpuyw\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "f0d6e8e6-2e13-491d-a3b7-d64370a3d12d"
+        },
+        "cuerpo": {
+          "id": 3,
+          "nombre": "Funcional Avanzado",
+          "descripcion": null
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 17,
+      "titulo": "17. Miembros - listar (los tres del seed)  ->  200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/miembros",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "280",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"118-TX8su0DnBBRAgxScJCcZ6o91ul0\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "689e338e-ae27-408c-b574-21d6b5cfdbd3"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "nombre": "Karla Duarte",
+            "correo": "karla@itson.mx",
+            "membresia": "premium",
+            "activo": true
+          },
+          {
+            "id": 2,
+            "nombre": "Omar Valdez",
+            "correo": "omar@itson.mx",
+            "membresia": "plus",
+            "activo": true
+          },
+          {
+            "id": 3,
+            "nombre": "Sofia Ibarra",
+            "correo": "sofia@itson.mx",
+            "membresia": "basica",
+            "activo": true
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 18,
+      "titulo": "18. Miembros - crear  ->  201",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/miembros",
+        "origen": null,
+        "cuerpo": {
+          "nombre": "Luis Prueba",
+          "correo": "luis@itson.mx",
+          "membresia": "basica"
+        }
+      },
+      "respuesta": {
+        "estado": 201,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "91",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5b-jI6Lgc+6zWzBqxQZZQYRCBH+/Ls\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "ca7c5fcd-c859-4a2b-9647-5f68732f949a"
+        },
+        "cuerpo": {
+          "id": 4,
+          "nombre": "Luis Prueba",
+          "correo": "luis@itson.mx",
+          "membresia": "basica",
+          "activo": true
+        }
+      },
+      "esperado": 201
+    },
+    {
+      "numero": 19,
+      "titulo": "19. Miembros - buscar por id  ->  200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/miembros/4",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "91",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5b-jI6Lgc+6zWzBqxQZZQYRCBH+/Ls\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "d79e1a11-1eb3-490f-a79e-75b721d821c4"
+        },
+        "cuerpo": {
+          "id": 4,
+          "nombre": "Luis Prueba",
+          "correo": "luis@itson.mx",
+          "membresia": "basica",
+          "activo": true
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 20,
+      "titulo": "20. Miembros - dar de baja (PATCH activo:false)  ->  200",
+      "peticion": {
+        "metodo": "PATCH",
+        "ruta": "/miembros/4",
+        "origen": null,
+        "cuerpo": {
+          "activo": false
+        }
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "92",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5c-R924pVmDcVmxZkuZSKb3naTjj6g\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "55f86346-3962-45af-b8e2-b59e5942ffee"
+        },
+        "cuerpo": {
+          "id": 4,
+          "nombre": "Luis Prueba",
+          "correo": "luis@itson.mx",
+          "membresia": "basica",
+          "activo": false
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 21,
+      "titulo": "21. Miembros - un id que no existe  ->  404",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/miembros/99",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 404,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "74",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"4a-+fzOsgxM7kj3SAKjCa6oQU5GmHM\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "f7d7eeb3-9a4c-4a44-8f92-761aaa177449"
+        },
+        "cuerpo": {
+          "message": "No existe el miembro 99",
+          "error": "Not Found",
+          "statusCode": 404
+        }
+      },
+      "esperado": 404
+    },
+    {
+      "numero": 22,
+      "titulo": "22. Miembros - eliminar  ->  200",
+      "peticion": {
+        "metodo": "DELETE",
+        "ruta": "/miembros/4",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "92",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5c-R924pVmDcVmxZkuZSKb3naTjj6g\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "fd2b3b7a-f554-4e10-8036-d7c4dbb87f02"
+        },
+        "cuerpo": {
+          "id": 4,
+          "nombre": "Luis Prueba",
+          "correo": "luis@itson.mx",
+          "membresia": "basica",
+          "activo": false
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 23,
+      "titulo": "23. Horarios - listar (los tres del seed)  ->  200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/horarios",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "298",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"12a-6Yateec1K7QFcODED0lPd0mQhlc\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "743cd30e-08ca-425f-8c60-a3c6ce487c7e"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "claseId": 1,
+            "dia": "lunes",
+            "horaInicio": "07:00",
+            "cupoMaximo": 2,
+            "entrenador": "Ana Robles"
+          },
+          {
+            "id": 2,
+            "claseId": 1,
+            "dia": "miercoles",
+            "horaInicio": "07:00",
+            "cupoMaximo": 3,
+            "entrenador": "Ana Robles"
+          },
+          {
+            "id": 3,
+            "claseId": 2,
+            "dia": "martes",
+            "horaInicio": "19:00",
+            "cupoMaximo": 4,
+            "entrenador": "Luis Fierro"
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 24,
+      "titulo": "24. Horarios - crear  ->  201",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/horarios",
+        "origen": null,
+        "cuerpo": {
+          "claseId": 2,
+          "dia": "jueves",
+          "horaInicio": "18:00",
+          "cupoMaximo": 5,
+          "entrenador": "Luis Fierro"
+        }
+      },
+      "respuesta": {
+        "estado": 201,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "98",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"62-9R9KoNJZSUvUmSt2o+WSD9mEQto\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "54585674-77f5-4448-aa08-b8af63c4e8ce"
+        },
+        "cuerpo": {
+          "id": 4,
+          "claseId": 2,
+          "dia": "jueves",
+          "horaInicio": "18:00",
+          "cupoMaximo": 5,
+          "entrenador": "Luis Fierro"
+        }
+      },
+      "esperado": 201
+    },
+    {
+      "numero": 25,
+      "titulo": "25. Horarios - actualizar el cupo  ->  200",
+      "peticion": {
+        "metodo": "PATCH",
+        "ruta": "/horarios/4",
+        "origen": null,
+        "cuerpo": {
+          "cupoMaximo": 6
+        }
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "98",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"62-NarBopR6pGhQOXlRcxLZrYejgM0\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "ab3c0ebe-8ef0-4f1e-9001-25cff6a133ca"
+        },
+        "cuerpo": {
+          "id": 4,
+          "claseId": 2,
+          "dia": "jueves",
+          "horaInicio": "18:00",
+          "cupoMaximo": 6,
+          "entrenador": "Luis Fierro"
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 26,
+      "titulo": "26. Horarios - un id que no existe  ->  404",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/horarios/99",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 404,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "74",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"4a-APsrhQWbkmQ+N0LLcBAqQhcODt8\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "4bfe3cab-945a-4f4d-b235-98fb0c8e53c9"
+        },
+        "cuerpo": {
+          "message": "No existe el horario 99",
+          "error": "Not Found",
+          "statusCode": 404
+        }
+      },
+      "esperado": 404
+    },
+    {
+      "numero": 27,
+      "titulo": "27. Horarios - eliminar  ->  200",
+      "peticion": {
+        "metodo": "DELETE",
+        "ruta": "/horarios/4",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "98",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"62-NarBopR6pGhQOXlRcxLZrYejgM0\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "07294078-e0fe-405b-ace4-073c3dbb0692"
+        },
+        "cuerpo": {
+          "id": 4,
+          "claseId": 2,
+          "dia": "jueves",
+          "horaInicio": "18:00",
+          "cupoMaximo": 6,
+          "entrenador": "Luis Fierro"
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 28,
+      "titulo": "28. Clases - falta el nombre  ->  400, lo rechaza el ValidationPipe",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/clases",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 400,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "163",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"a3-4j17nphUP8TPldlFizyMti5OjKg\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "c8bdcdd9-146c-4c0b-82ca-83ffc5cd3497"
+        },
+        "cuerpo": {
+          "message": [
+            "nombre must be shorter than or equal to 80 characters",
+            "nombre should not be empty",
+            "nombre must be a string"
+          ],
+          "error": "Bad Request",
+          "statusCode": 400
+        }
+      },
+      "esperado": 400
+    },
+    {
+      "numero": 29,
+      "titulo": "29. Clases - campo que no existe en el DTO  ->  400 (forbidNonWhitelisted)",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/clases",
+        "origen": null,
+        "cuerpo": {
+          "nombre": "Boxeo",
+          "hackeame": true
+        }
+      },
+      "respuesta": {
+        "estado": 400,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "89",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"59-kQfPDCUwlMC5mcYSTR8p9K7CWN4\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "4071b308-dd8b-432c-842f-4ad9c9357e64"
+        },
+        "cuerpo": {
+          "message": [
+            "property hackeame should not exist"
+          ],
+          "error": "Bad Request",
+          "statusCode": 400
+        }
+      },
+      "esperado": 400
+    },
+    {
+      "numero": 30,
+      "titulo": "30. Miembros - correo mal formado  ->  400",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/miembros",
+        "origen": null,
+        "cuerpo": {
+          "nombre": "Test",
+          "correo": "no-es-un-correo",
+          "membresia": "basica"
+        }
+      },
+      "respuesta": {
+        "estado": 400,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "78",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"4e-Mnrhvjupube0WguA0M6GTtqUdPQ\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "3f1afe00-ded6-4fd6-b5a2-abe02303b083"
+        },
+        "cuerpo": {
+          "message": [
+            "correo must be an email"
+          ],
+          "error": "Bad Request",
+          "statusCode": 400
+        }
+      },
+      "esperado": 400
+    },
+    {
+      "numero": 31,
+      "titulo": "31. Cualquier respuesta trae X-Request-Id en los encabezados",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/clases",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "93",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5d-WQ0uwafVdTsa05OgVQ1S+KoT1J8\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "11f20bb4-6f23-473a-8dcc-993008e25d73"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "nombre": "Yoga",
+            "descripcion": null
+          },
+          {
+            "id": 2,
+            "nombre": "Spinning",
+            "descripcion": null
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 32,
+      "titulo": "32. Un horario que no existe  ->  404, ahora con la forma que arma",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 99,
+          "miembroId": 1
+        }
+      },
+      "respuesta": {
+        "estado": 404,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "152",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"98-/wuiz+uNPEnrlsA2Lsw7uCJrRek\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "2ca285bc-8f2b-4f2e-a3d9-46d1c5009731"
+        },
+        "cuerpo": {
+          "statusCode": 404,
+          "error": "HorarioNoEncontradoError",
+          "message": "No existe el horario 99",
+          "path": "/inscripciones",
+          "timestamp": "2026-10-06T20:20:41.557Z"
+        }
+      },
+      "esperado": 404
+    },
+    {
+      "numero": 33,
+      "titulo": "33. Tipo equivocado en identificador -> 400",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": "uno",
+          "miembroId": 1
+        }
+      },
+      "respuesta": {
+        "estado": 400,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "126",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"7e-Wrm7DINRvjIz9xj9s8zgXU0GqTs\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "53bc484c-7de4-41b2-b76e-8978f8d17153"
+        },
+        "cuerpo": {
+          "message": [
+            "horarioId must not be less than 1",
+            "horarioId must be an integer number"
+          ],
+          "error": "Bad Request",
+          "statusCode": 400
+        }
+      },
+      "esperado": 400
+    },
+    {
+      "numero": 34,
+      "titulo": "34. Campo desconocido -> 400",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/clases",
+        "origen": null,
+        "cuerpo": {
+          "nombre": "Boxeo",
+          "campoExtra": true
+        }
+      },
+      "respuesta": {
+        "estado": 400,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "91",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5b-5JXP5VJUSIy+nrYSVGwBSHhdK/E\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "d4582af5-634c-44f5-b7a4-a61c09a2bba8"
+        },
+        "cuerpo": {
+          "message": [
+            "property campoExtra should not exist"
+          ],
+          "error": "Bad Request",
+          "statusCode": 400
+        }
+      },
+      "esperado": 400
+    },
+    {
+      "numero": 35,
+      "titulo": "35. Membresia no permitida -> 400",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/miembros",
+        "origen": null,
+        "cuerpo": {
+          "nombre": "Prueba",
+          "correo": "prueba@example.com",
+          "membresia": "vip"
+        }
+      },
+      "respuesta": {
+        "estado": 400,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "123",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"7b-ikTdw1CnL2j5W4rKpBz54DgaOXk\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "e8b9203b-bff8-42cf-89bf-6343f16a50ae"
+        },
+        "cuerpo": {
+          "message": [
+            "membresia must be one of the following values: basica, plus, premium"
+          ],
+          "error": "Bad Request",
+          "statusCode": 400
+        }
+      },
+      "esperado": 400
+    },
+    {
+      "numero": 36,
+      "titulo": "36. CORS origen permitido -> 200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/clases",
+        "origen": "http://localhost:5173",
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-allow-origin": "http://localhost:5173",
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "93",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5d-WQ0uwafVdTsa05OgVQ1S+KoT1J8\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "1d8e7adc-6bce-4d65-bdb1-258cda1c0f9d"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "nombre": "Yoga",
+            "descripcion": null
+          },
+          {
+            "id": 2,
+            "nombre": "Spinning",
+            "descripcion": null
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 37,
+      "titulo": "37. CORS origen no permitido -> 200 sin Access-Control-Allow-Origin",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/clases",
+        "origen": "http://localhost:9999",
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "93",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5d-WQ0uwafVdTsa05OgVQ1S+KoT1J8\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "11d604c9-0dea-48b1-bcb2-efe01c3c0e3a"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "nombre": "Yoga",
+            "descripcion": null
+          },
+          {
+            "id": 2,
+            "nombre": "Spinning",
+            "descripcion": null
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 38,
+      "titulo": "38. CORS segundo origen permitido -> 200",
+      "peticion": {
+        "metodo": "GET",
+        "ruta": "/clases",
+        "origen": "http://localhost:3001",
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-allow-origin": "http://localhost:3001",
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "93",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5d-WQ0uwafVdTsa05OgVQ1S+KoT1J8\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "24d2808c-5514-48f8-9512-c9aa8cb16aea"
+        },
+        "cuerpo": [
+          {
+            "id": 1,
+            "nombre": "Yoga",
+            "descripcion": null
+          },
+          {
+            "id": 2,
+            "nombre": "Spinning",
+            "descripcion": null
+          }
+        ]
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 39,
+      "titulo": "39. Cancelar para comprobar reinscripcion -> 200",
+      "peticion": {
+        "metodo": "DELETE",
+        "ruta": "/inscripciones/3",
+        "origen": null,
+        "cuerpo": null
+      },
+      "respuesta": {
+        "estado": 200,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "95",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"5f-dxFWqx9z2qnmhX0EuuCMGkZZgVM\"",
+          "keep-alive": "timeout=5",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "9315d4ab-537c-4b39-adb0-57541fac5d6e"
+        },
+        "cuerpo": {
+          "id": 3,
+          "horarioId": 1,
+          "miembroId": 3,
+          "estado": "cancelada",
+          "creadaEn": "2026-10-06T20:20:41.468Z"
+        }
+      },
+      "esperado": 200
+    },
+    {
+      "numero": 40,
+      "titulo": "40. Reinscribir misma pareja cancelada -> 201",
+      "peticion": {
+        "metodo": "POST",
+        "ruta": "/inscripciones",
+        "origen": null,
+        "cuerpo": {
+          "horarioId": 1,
+          "miembroId": 1
+        }
+      },
+      "respuesta": {
+        "estado": 201,
+        "cabeceras": {
+          "access-control-expose-headers": "Location,X-Request-Id",
+          "connection": "keep-alive",
+          "content-length": "96",
+          "content-type": "application/json; charset=utf-8",
+          "date": "Tue, 06 Oct 2026 20:20:41 GMT",
+          "etag": "W/\"60-pzklq8TrFL4XpXQHJFi3XRnxurs\"",
+          "keep-alive": "timeout=5",
+          "location": "/inscripciones/1",
+          "vary": "Origin",
+          "x-powered-by": "Express",
+          "x-request-id": "10cc5cba-0848-4865-b493-41e9ce44dad8"
+        },
+        "cuerpo": {
+          "id": 1,
+          "horarioId": 1,
+          "miembroId": 1,
+          "estado": "confirmada",
+          "creadaEn": "2026-10-06T20:20:41.578Z"
+        }
+      },
+      "esperado": 201
+    }
+  ]
+}
