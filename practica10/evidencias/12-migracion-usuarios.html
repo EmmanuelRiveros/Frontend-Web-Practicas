@@ -1,0 +1,19 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Práctica 10 Migración generada y aplicada</title><style>*{box-sizing:border-box}body{margin:0;padding:22px;font:18px Arial;background:#f3f6f8;color:#172c3b}main{width:100%;max-width:1100px;margin:auto}h1{font-size:27px;margin:0 0 12px}h2{font-size:22px}h3{font-size:24px;color:#a23926}article{background:white;padding:20px;border:1px solid #c2cdd5;margin:18px 0}pre{font:18px/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{line-height:1.4}</style><main><h1>Práctica 10 Migración generada y aplicada</h1><p>Carpetas reales de prisma/migrations</p><pre>20261006201601_inicial
+20261006201617_descripcion_clase
+20261006201631_horarios
+20261006201644_miembros
+20261006201701_inscripciones
+20261014004550_usuarios
+migration_lock.toml</pre><h2>20261014004550_usuarios/migration.sql</h2><pre>-- CreateTable
+CREATE TABLE `usuarios` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `correo` VARCHAR(160) NOT NULL,
+    `passwordHash` VARCHAR(72) NOT NULL,
+    `rol` VARCHAR(20) NOT NULL DEFAULT &#39;miembro&#39;,
+    `miembroId` INTEGER NULL,
+    `creadoEn` DATETIME(3) NOT NULL DEFAULT CURRENT_TIMESTAMP(3),
+
+    UNIQUE INDEX `usuarios_correo_key`(`correo`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
+</pre></main></html>

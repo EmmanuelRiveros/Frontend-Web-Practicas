@@ -1,0 +1,12 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Práctica 10 Identidad tomada del token</title><style>*{box-sizing:border-box}body{margin:0;padding:22px;font:18px Arial;background:#f3f6f8;color:#172c3b}main{width:100%;max-width:1100px;margin:auto}h1{font-size:27px;margin:0 0 12px}h2{font-size:22px}h3{font-size:24px;color:#a23926}article{background:white;padding:20px;border:1px solid #c2cdd5;margin:18px 0}pre{font:18px/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{line-height:1.4}</style><main><h1>Práctica 10 Identidad tomada del token</h1><p>Solicitud real. JWT y contraseña omitidos en esta copia.</p><article><h2>42. EL HUECO CERRADO: Karla intenta inscribir a Sofia  -&gt;  403</h2><pre>POST http://localhost:3000/inscripciones
+{
+  &quot;horarioId&quot;: 3,
+  &quot;miembroId&quot;: 3
+}</pre><h3>HTTP 403</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: f35295eb-4159-4be0-af83-46ae163e667a</pre><pre>{
+  &quot;message&quot;: &quot;Solo puedes inscribirte a ti mismo&quot;,
+  &quot;error&quot;: &quot;Forbidden&quot;,
+  &quot;statusCode&quot;: 403
+}</pre></article></main></html>

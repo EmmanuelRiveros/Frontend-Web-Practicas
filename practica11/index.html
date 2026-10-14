@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vento Catálogo deportivo</title>
+  </head>
+  <body>
+    <header class="encabezado">
+      <a class="marca" href="/" aria-label="Vento Inicio">vento<span> / sport</span></a>
+      <div class="encabezado__carrito">
+        <span>Carrito <strong id="cuenta" aria-live="polite">0</strong></span>
+        <boton-app variante="secundario" id="vaciar">Vaciar</boton-app>
+      </div>
+    </header>
+    <main>
+      <section class="portada">
+        <p class="etiqueta">CALZADO Y ROPA</p>
+        <h1>Listo para tu próximo entrenamiento</h1>
+        <p>Elige tu equipo y agrégalo al carrito.</p>
+      </section>
+      <section class="variantes" id="variantes" aria-label="Variantes del botón reutilizable">
+        <div><h2>Un botón para cada uso</h2><p>La variante se configura con un atributo.</p></div>
+        <boton-app variante="primario">Primario</boton-app>
+        <boton-app variante="secundario">Secundario</boton-app>
+        <boton-app variante="danger">Danger</boton-app>
+        <boton-app disabled>Deshabilitado</boton-app>
+      </section>
+      <div class="titulo-catalogo"><h2>Catálogo</h2><span>12 productos</span></div>
+      <section class="rejilla" id="rejilla" aria-label="Productos"></section>
+    </main>
+    <footer>Práctica 11 · Componentes con TypeScript y el navegador</footer>
+    <script type="module" src="/src/main.ts"></script>
+  </body>
+</html>

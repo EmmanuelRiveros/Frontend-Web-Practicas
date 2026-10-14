@@ -1,0 +1,9 @@
+:host { display: block; height: 100%; min-width: 0; }
+.tarjeta { height: 100%; overflow: hidden; border: 1px solid #dce2ea; border-radius: 12px; background: white; box-shadow: 0 3px 12px #1e315b08; font-family: Arial, sans-serif; }
+img { display: block; width: 100%; aspect-ratio: 16 / 9; object-fit: cover; background: #edf1f7; }
+.cuerpo { padding: 17px; }
+h3 { min-height: 40px; margin: 0 0 8px; color: #172b46; font-size: 17px; line-height: 1.2; }
+.precio { margin: 0 0 7px; color: #172b46; font-size: 21px; font-weight: 700; }
+.existencia { margin: 0 0 15px; color: #52704d; font-size: 14px; }
+.agotado { color: #b33136; font-weight: 700; }
+boton-app { display: block; }

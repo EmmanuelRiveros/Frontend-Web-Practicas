@@ -1,0 +1,29 @@
+[
+  {
+    "miembroId": 1,
+    "status": 201,
+    "respuesta": {
+      "data": {
+        "id": 5,
+        "horarioId": 2,
+        "miembroId": 1,
+        "estado": "confirmada",
+        "creadaEn": "2026-10-14T00:53:51.973Z"
+      },
+      "meta": {
+        "ruta": "/inscripciones",
+        "duracionMs": 45,
+        "timestamp": "2026-10-14T00:53:52.001Z"
+      }
+    }
+  },
+  {
+    "miembroId": 3,
+    "status": 403,
+    "respuesta": {
+      "message": "Solo puedes inscribirte a ti mismo",
+      "error": "Forbidden",
+      "statusCode": 403
+    }
+  }
+]

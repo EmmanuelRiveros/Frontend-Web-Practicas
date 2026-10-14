@@ -1,0 +1,179 @@
+{
+  "total": 19,
+  "resultados": [
+    {
+      "titulo": "12 tarjetas del catálogo",
+      "resultado": "correcto",
+      "detalle": 12
+    },
+    {
+      "titulo": "12 imágenes locales cargadas",
+      "resultado": "correcto",
+      "detalle": [
+        {
+          "src": "/img/producto-01.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-02.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-03.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-04.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-05.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-06.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-07.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-08.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-09.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-10.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-11.svg",
+          "cargada": true
+        },
+        {
+          "src": "/img/producto-12.svg",
+          "cargada": true
+        }
+      ]
+    },
+    {
+      "titulo": "Variantes, disabled y texto por slot",
+      "resultado": "correcto",
+      "detalle": [
+        {
+          "variante": "primario",
+          "disabled": false,
+          "slot": "Primario"
+        },
+        {
+          "variante": "secundario",
+          "disabled": false,
+          "slot": "Secundario"
+        },
+        {
+          "variante": "danger",
+          "disabled": false,
+          "slot": "Danger"
+        },
+        {
+          "variante": "primario",
+          "disabled": true,
+          "slot": "Deshabilitado"
+        }
+      ]
+    },
+    {
+      "titulo": "CustomEvent con id, nombre y precio numérico",
+      "resultado": "correcto",
+      "detalle": {
+        "id": "P-001",
+        "nombre": "Tenis para correr Vento",
+        "precio": 1299
+      }
+    },
+    {
+      "titulo": "Tres productos actualizan el contador",
+      "resultado": "correcto",
+      "detalle": 3
+    },
+    {
+      "titulo": "Cambio de variante por atributo sin editar TypeScript",
+      "resultado": "correcto",
+      "detalle": "danger"
+    },
+    {
+      "titulo": "disabled impide el click nativo y conserva contador",
+      "resultado": "correcto",
+      "detalle": 3
+    },
+    {
+      "titulo": "composed false no cruza la sombra y no incrementa",
+      "resultado": "correcto",
+      "detalle": 3
+    },
+    {
+      "titulo": "Restaurar composed true vuelve a incrementar",
+      "resultado": "correcto",
+      "detalle": 4
+    },
+    {
+      "titulo": "Vaciar reinicia el contador",
+      "resultado": "correcto",
+      "detalle": 0
+    },
+    {
+      "titulo": "Agotado deshabilita y no agrega P-009",
+      "resultado": "correcto",
+      "detalle": 0
+    },
+    {
+      "titulo": "Agotado deshabilita y no agrega P-011",
+      "resultado": "correcto",
+      "detalle": 0
+    },
+    {
+      "titulo": "Precio de texto convertido a número y formateado",
+      "resultado": "correcto",
+      "detalle": "$1,300.50"
+    },
+    {
+      "titulo": "Cambios de existencia repintan sin recrear el componente",
+      "resultado": "correcto",
+      "detalle": "0 -> agotado; 8 -> habilitado"
+    },
+    {
+      "titulo": "CSS externo no selecciona el button dentro de la sombra",
+      "resultado": "correcto",
+      "detalle": "rgb(255, 255, 255)"
+    },
+    {
+      "titulo": "Shadow root abierto y slot comprobados",
+      "resultado": "correcto",
+      "detalle": "<boton-app id=\"vaciar\" variante=\"secundario\">\n  #shadow-root (open)\n    <style>CSS interno del componente</style>\n    <button type=\"button\" class=\"secundario\">\n      <slot></slot>\n    </button>\n  Vaciar   <- texto del Light DOM asignado al slot\n</boton-app>"
+    },
+    {
+      "titulo": "Vista móvil sin desbordamiento horizontal",
+      "resultado": "correcto",
+      "detalle": 390
+    },
+    {
+      "titulo": "Sin errores JavaScript incluidos los eventos sin composed",
+      "resultado": "correcto",
+      "detalle": []
+    },
+    {
+      "titulo": "Consola recibe nombre y precio del evento",
+      "resultado": "correcto",
+      "detalle": [
+        "Agregado: Tenis para correr Vento 1299",
+        "Agregado: Tenis de entrenamiento Cross 1549",
+        "Agregado: Tenis casuales Urbano 989",
+        "Agregado: Tenis para correr Vento 1299"
+      ]
+    }
+  ]
+}

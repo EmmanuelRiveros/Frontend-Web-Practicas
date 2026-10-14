@@ -1,0 +1,124 @@
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [NestFactory] Starting Nest application...
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] PrismaModule dependencies initialized +16ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] PassportModule dependencies initialized +0ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] JwtModule dependencies initialized +1ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] AppModule dependencies initialized +0ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] ClasesModule dependencies initialized +0ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] InscripcionesModule dependencies initialized +0ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] MiembrosModule dependencies initialized +0ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] HorariosModule dependencies initialized +0ms
+[Nest] 56568  - 13/10/2026, 5:50:27 p.m.     LOG [InstanceLoader] AuthModule dependencies initialized +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RoutesResolver] AppController {/}: +73ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/, GET} route +3ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RoutesResolver] AuthController {/auth}: +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/auth/registro, POST} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/auth/login, POST} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/auth/yo, GET} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RoutesResolver] ClasesController {/clases}: +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/clases, GET} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/clases/:id, GET} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/clases, POST} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/clases/:id, PATCH} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/clases/:id, DELETE} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RoutesResolver] InscripcionesController {/inscripciones}: +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/inscripciones, GET} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/inscripciones/:id, GET} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/inscripciones, POST} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/inscripciones/:id, DELETE} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RoutesResolver] MiembrosController {/miembros}: +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/miembros, GET} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/miembros/:id, GET} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/miembros, POST} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/miembros/:id, PATCH} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/miembros/:id, DELETE} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RoutesResolver] HorariosController {/horarios}: +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/horarios, GET} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/horarios/:id, GET} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/horarios, POST} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/horarios/:id, PATCH} route +1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [RouterExplorer] Mapped {/horarios/:id, DELETE} route +0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [NestApplication] Nest application successfully started +110ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 36ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /auth/login - 123ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /inscripciones - 42ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /inscripciones - 13ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -> 409 CupoLlenoError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -> 409 InscripcionDuplicadaError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -> 404 HorarioNoEncontradoError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -> 404 MiembroNoEncontradoError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /inscripciones - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] DELETE /inscripciones/1 - 10ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /inscripciones - 24ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /clases - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases/3 - 2ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] PATCH /clases/3 - 8ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] DELETE /clases/3 - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /miembros - 2ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /miembros - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /miembros/4 - 2ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] PATCH /miembros/4 - 8ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] DELETE /miembros/4 - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /horarios - 2ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /horarios - 6ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] PATCH /horarios/4 - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] DELETE /horarios/4 - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -> 404 HorarioNoEncontradoError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases/1 - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 2ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /auth/login - 91ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /auth/yo - 0ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /inscripciones - 9ms
+[Nest] 56568  - 13/10/2026, 5:50:29 p.m.     LOG [HTTP] POST /auth/registro - 102ms
+[Nest] 56568  - 13/10/2026, 5:50:29 p.m.     LOG [HTTP] POST /auth/login - 91ms
+[Nest] 56568  - 13/10/2026, 5:50:29 p.m.     LOG [HTTP] DELETE /inscripciones/4 - 8ms
+[Nest] 56568  - 13/10/2026, 5:50:29 p.m.     LOG [HTTP] POST /inscripciones - 9ms
+[Nest] 56568  - 13/10/2026, 5:50:29 p.m.     LOG [HTTP] DELETE /inscripciones/5 - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:29 p.m.     LOG [HTTP] POST /auth/registro - 96ms
+
+=== REINICIO DEL SERVIDOR SIN EJECUTAR SEED ===
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [NestFactory] Starting Nest application...
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] PrismaModule dependencies initialized +21ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] PassportModule dependencies initialized +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] JwtModule dependencies initialized +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] AppModule dependencies initialized +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] ClasesModule dependencies initialized +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] InscripcionesModule dependencies initialized +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] MiembrosModule dependencies initialized +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] HorariosModule dependencies initialized +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [InstanceLoader] AuthModule dependencies initialized +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RoutesResolver] AppController {/}: +72ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/, GET} route +2ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RoutesResolver] AuthController {/auth}: +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/auth/registro, POST} route +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/auth/login, POST} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/auth/yo, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RoutesResolver] ClasesController {/clases}: +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/clases, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/clases/:id, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/clases, POST} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/clases/:id, PATCH} route +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/clases/:id, DELETE} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RoutesResolver] InscripcionesController {/inscripciones}: +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/inscripciones, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/inscripciones/:id, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/inscripciones, POST} route +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/inscripciones/:id, DELETE} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RoutesResolver] MiembrosController {/miembros}: +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/miembros, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/miembros/:id, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/miembros, POST} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/miembros/:id, PATCH} route +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/miembros/:id, DELETE} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RoutesResolver] HorariosController {/horarios}: +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/horarios, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/horarios/:id, GET} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/horarios, POST} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/horarios/:id, PATCH} route +0ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [RouterExplorer] Mapped {/horarios/:id, DELETE} route +1ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [NestApplication] Nest application successfully started +103ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [HTTP] GET /clases - 30ms
+[Nest] 72220  - 13/10/2026, 5:50:31 p.m.     LOG [HTTP] POST /auth/login - 126ms

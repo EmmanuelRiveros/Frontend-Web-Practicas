@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Práctica 10 Header y payload del JWT</title><style>*{box-sizing:border-box}body{margin:0;padding:22px;font:18px Arial;background:#f3f6f8;color:#172c3b}main{width:100%;max-width:1100px;margin:auto}h1{font-size:27px;margin:0 0 12px}h2{font-size:22px}h3{font-size:24px;color:#a23926}article{background:white;padding:20px;border:1px solid #c2cdd5;margin:18px 0}pre{font:18px/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{line-height:1.4}</style><main><h1>Práctica 10 Header y payload del JWT</h1><p>Decodificación local de un JWT real recibido de login.</p><article><h2>Claims del token de Karla decodificados localmente</h2><pre>DECODIFICAR Local sin enviar el secreto</pre><h3>Header y payload legibles</h3><pre></pre><pre>{
+  &quot;header&quot;: {
+    &quot;alg&quot;: &quot;HS256&quot;,
+    &quot;typ&quot;: &quot;JWT&quot;
+  },
+  &quot;payload&quot;: {
+    &quot;sub&quot;: 1,
+    &quot;correo&quot;: &quot;karla@itson.mx&quot;,
+    &quot;rol&quot;: &quot;miembro&quot;,
+    &quot;miembroId&quot;: 1,
+    &quot;iat&quot;: 1791939028,
+    &quot;exp&quot;: 1791942628
+  },
+  &quot;firma&quot;: &quot;[verificada por el servidor; no publicada]&quot;
+}</pre></article></main></html>

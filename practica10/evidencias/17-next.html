@@ -1,0 +1,13 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Práctica 10 Middleware con y sin next</title><style>*{box-sizing:border-box}body{margin:0;padding:22px;font:18px Arial;background:#f3f6f8;color:#172c3b}main{width:100%;max-width:1100px;margin:auto}h1{font-size:27px;margin:0 0 12px}h2{font-size:22px}h3{font-size:24px;color:#a23926}article{background:white;padding:20px;border:1px solid #c2cdd5;margin:18px 0}pre{font:18px/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{line-height:1.4}</style><main><h1>Práctica 10 Middleware con y sin next</h1><p>Experimento HTTP aislado con una copia del middleware compilado. El código final conserva next().</p><pre>[
+  {
+    &quot;sinNext&quot;: true,
+    &quot;status&quot;: &quot;Sin respuesta antes del timeout&quot;,
+    &quot;duracionMs&quot;: 358
+  },
+  {
+    &quot;sinNext&quot;: false,
+    &quot;status&quot;: 200,
+    &quot;texto&quot;: &quot;siguiente ejecutado&quot;,
+    &quot;duracionMs&quot;: 14
+  }
+]</pre></main></html>

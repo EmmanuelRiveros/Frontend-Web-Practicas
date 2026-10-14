@@ -1,0 +1,23 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Práctica 10 Origen no permitido</title><style>*{box-sizing:border-box}body{margin:0;padding:22px;font:18px Arial;background:#f3f6f8;color:#172c3b}main{width:100%;max-width:1100px;margin:auto}h1{font-size:27px;margin:0 0 12px}h2{font-size:22px}h3{font-size:24px;color:#a23926}article{background:white;padding:20px;border:1px solid #c2cdd5;margin:18px 0}pre{font:18px/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{line-height:1.4}</style><main><h1>Práctica 10 Origen no permitido</h1><p>Solicitud real. JWT y contraseña omitidos en esta copia.</p><article><h2>35. CORS - origen no permitido  -&gt;  200 SIN Access-Control-Allow-Origin</h2><pre>GET http://localhost:3000/clases
+Origin: http://localhost:4000</pre><h3>HTTP 200</h3><pre>access-control-expose-headers: Location,X-Request-Id
+content-type: application/json; charset=utf-8
+vary: Origin
+x-request-id: 0c42ba85-040e-49dd-89a5-58aebe54fe78</pre><pre>{
+  &quot;data&quot;: [
+    {
+      &quot;id&quot;: 1,
+      &quot;nombre&quot;: &quot;Yoga&quot;,
+      &quot;descripcion&quot;: null
+    },
+    {
+      &quot;id&quot;: 2,
+      &quot;nombre&quot;: &quot;Spinning&quot;,
+      &quot;descripcion&quot;: null
+    }
+  ],
+  &quot;meta&quot;: {
+    &quot;ruta&quot;: &quot;/clases&quot;,
+    &quot;duracionMs&quot;: 1,
+    &quot;timestamp&quot;: &quot;2026-10-14T00:50:28.757Z&quot;
+  }
+}</pre></article></main></html>

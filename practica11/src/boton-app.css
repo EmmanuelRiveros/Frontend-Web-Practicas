@@ -1,0 +1,14 @@
+:host { display: inline-block; }
+button {
+  box-sizing: border-box; width: 100%; border: 1px solid transparent; border-radius: 8px;
+  padding: 11px 18px; font: 600 15px/1.2 Arial, sans-serif; cursor: pointer;
+  transition: background-color .15s, box-shadow .15s;
+}
+.primario { background: #2356b6; color: white; }
+.primario:hover:not(:disabled) { background: #173f8e; }
+.secundario { background: white; border-color: #2356b6; color: #2356b6; }
+.secundario:hover:not(:disabled) { background: #edf3ff; }
+.danger { background: #b83337; color: white; }
+.danger:hover:not(:disabled) { background: #96272a; }
+button:disabled { background: #e1e5eb; border-color: #d2d8e1; color: #717986; cursor: not-allowed; }
+button:focus-visible { outline: 3px solid #a8c4ff; outline-offset: 3px; }

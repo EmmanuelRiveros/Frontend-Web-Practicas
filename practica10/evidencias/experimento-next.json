@@ -1,0 +1,13 @@
+[
+  {
+    "sinNext": true,
+    "status": "Sin respuesta antes del timeout",
+    "duracionMs": 358
+  },
+  {
+    "sinNext": false,
+    "status": 200,
+    "texto": "siguiente ejecutado",
+    "duracionMs": 14
+  }
+]

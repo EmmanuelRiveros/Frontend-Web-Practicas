@@ -1,0 +1,340 @@
+### Gimnasio API - peticiones de prueba (hasta la Practica 10)
+###
+### COMO SE USA:
+###   1. Extension "REST Client" (humao.rest-client) en VS Code.
+###   2. npm run start:dev
+###   3. Clic en "Send Request" arriba de cada peticion.
+###
+### OJO: el orden importa. El horario 1 tiene cupoMaximo = 2, asi que las
+### peticiones 1, 2 y 3 hay que correrlas EN ORDEN para ver el 409.
+### Desde la Practica 8 los datos viven en MySQL (Prisma): un reinicio
+### del servidor ya NO los borra. Vuelve a la foto original con
+### npm run prisma:seed (que primero borra y vuelve a sembrar).
+
+@host = http://localhost:3000
+
+### Iniciar sesión como administrador antes de ejecutar los casos 1 a 35
+# @name loginAdmin
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{ "correo": "admin@itson.mx", "password": "gimnasio2026" }
+
+@tokenAdmin = {{loginAdmin.response.body.data.access_token}}
+
+### 1. Primera inscripcion  ->  201 + header Location
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 1, "miembroId": 1 }
+
+
+### 2. Segunda inscripcion, se llena el cupo  ->  201
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 1, "miembroId": 2 }
+
+
+### 3. REGLA 1 - tercera inscripcion  ->  409 cupo lleno
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 1, "miembroId": 3 }
+
+
+### 4. REGLA 2 - el miembro 1 otra vez  ->  409 duplicada
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 1, "miembroId": 1 }
+
+
+### 5. Un horario que no existe  ->  404
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 99, "miembroId": 1 }
+
+
+### 6. Un miembro que no existe  ->  404
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 3, "miembroId": 99 }
+
+
+### 7. Cuerpo mal formado  ->  400, NO 409
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": "hola" }
+
+
+### 8. Listar todas  ->  200
+GET {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 9. Cancelar la primera  ->  200 con estado "cancelada"
+DELETE {{host}}/inscripciones/1
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 10. EL REMATE DE LA CLASE  ->  201
+###     Es la MISMA peticion de la #3, que dio 409.
+###     Ahora da 201 porque la cancelacion libero el lugar.
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 1, "miembroId": 3 }
+
+
+### ================================================================
+### Semana 4 - Refuerzo: Clases reestructurada, Miembros (en clase)
+### y Horarios (Asignacion)
+### ================================================================
+
+### 11. Clases - listar (las dos del seed)  ->  200
+GET {{host}}/clases
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 12. Clases - crear  ->  201
+POST {{host}}/clases
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "nombre": "Funcional" }
+
+
+### 13. Clases - buscar por id  ->  200
+GET {{host}}/clases/3
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 14. Clases - actualizar el nombre (PATCH)  ->  200
+PATCH {{host}}/clases/3
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "nombre": "Funcional Avanzado" }
+
+
+### 15. Clases - un id que no existe  ->  404
+GET {{host}}/clases/99
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 16. Clases - eliminar  ->  200
+DELETE {{host}}/clases/3
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 17. Miembros - listar (los tres del seed)  ->  200
+GET {{host}}/miembros
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 18. Miembros - crear  ->  201
+POST {{host}}/miembros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "nombre": "Luis Prueba", "correo": "luis@itson.mx", "membresia": "basica" }
+
+
+### 19. Miembros - buscar por id  ->  200
+GET {{host}}/miembros/4
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 20. Miembros - dar de baja (PATCH activo:false)  ->  200
+PATCH {{host}}/miembros/4
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "activo": false }
+
+
+### 21. Miembros - un id que no existe  ->  404
+GET {{host}}/miembros/99
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 22. Miembros - eliminar  ->  200
+DELETE {{host}}/miembros/4
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 23. Horarios - listar (los tres del seed)  ->  200
+GET {{host}}/horarios
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 24. Horarios - crear  ->  201
+POST {{host}}/horarios
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "claseId": 2, "dia": "jueves", "horaInicio": "18:00", "cupoMaximo": 5, "entrenador": "Luis Fierro" }
+
+
+### 25. Horarios - actualizar el cupo  ->  200
+PATCH {{host}}/horarios/4
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "cupoMaximo": 6 }
+
+
+### 26. Horarios - un id que no existe  ->  404
+GET {{host}}/horarios/99
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 27. Horarios - eliminar  ->  200
+DELETE {{host}}/horarios/4
+Authorization: Bearer {{tokenAdmin}}
+
+
+### ================================================================
+### Practica 9 - Blindar la API (ValidationPipe, Middleware,
+### Interceptor, Filter)
+### ================================================================
+
+### 28. Clases - falta el nombre  ->  400, lo rechaza el ValidationPipe
+POST {{host}}/clases
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{}
+
+
+### 29. Clases - campo que no existe en el DTO  ->  400 (forbidNonWhitelisted)
+POST {{host}}/clases
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "nombre": "Boxeo", "hackeame": true }
+
+
+### 30. Miembros - correo mal formado  ->  400
+POST {{host}}/miembros
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "nombre": "Test", "correo": "no-es-un-correo", "membresia": "basica" }
+
+
+### 31. Cualquier respuesta trae X-Request-Id en los encabezados
+### (revisa la pestaña "Headers" de la respuesta) -- lo pone el
+### PeticionIdMiddleware.
+GET {{host}}/clases
+Authorization: Bearer {{tokenAdmin}}
+
+
+### 32. Un horario que no existe  ->  404, ahora con la forma que arma
+### el DominioExceptionFilter: { statusCode, error, message, path, timestamp }
+POST {{host}}/inscripciones
+Authorization: Bearer {{tokenAdmin}}
+Content-Type: application/json
+
+{ "horarioId": 99, "miembroId": 1 }
+
+
+### ================================================================
+### Practica 9B - Filtros, Middleware e Interceptores
+### ================================================================
+
+### 33. Mandar tu propio X-Request-Id  ->  la respuesta regresa el mismo
+GET {{host}}/clases/1
+Authorization: Bearer {{tokenAdmin}}
+X-Request-Id: prueba-123
+
+
+### 34. CORS - origen permitido  ->  200 CON Access-Control-Allow-Origin
+GET {{host}}/clases
+Authorization: Bearer {{tokenAdmin}}
+Origin: http://localhost:5173
+
+
+### 35. CORS - origen no permitido  ->  200 SIN Access-Control-Allow-Origin
+###     El servidor responde igual: el que bloquea es el navegador.
+GET {{host}}/clases
+Authorization: Bearer {{tokenAdmin}}
+Origin: http://localhost:4000
+
+
+### ================================================================
+### Practica 10 - Autenticacion JWT y OpenAPI
+### Cuentas de prueba (en memoria): karla@itson.mx (miembro 1),
+### ana@itson.mx (entrenador), admin@itson.mx. Contrasena: gimnasio2026
+### ================================================================
+
+### 36. Sin token  ->  401. Las inscripciones ya no son publicas
+GET {{host}}/inscripciones
+
+
+### 37. El catalogo sigue abierto  ->  200 (@Publico)
+GET {{host}}/clases
+
+
+### 38. Login con contrasena mala  ->  401 "Credenciales invalidas"
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{ "correo": "karla@itson.mx", "password": "otra" }
+
+
+### 39. Login de Karla  ->  200 con el token
+# @name loginKarla
+POST {{host}}/auth/login
+Content-Type: application/json
+
+{ "correo": "karla@itson.mx", "password": "gimnasio2026" }
+
+@tokenKarla = {{loginKarla.response.body.data.access_token}}
+
+
+### 40. Lo que viaja dentro del token  ->  200
+GET {{host}}/auth/yo
+Authorization: Bearer {{tokenKarla}}
+
+
+### 41. Karla se inscribe a si misma  ->  201
+POST {{host}}/inscripciones
+Content-Type: application/json
+Authorization: Bearer {{tokenKarla}}
+
+{ "horarioId": 3, "miembroId": 1 }
+
+
+### 42. EL HUECO CERRADO: Karla intenta inscribir a Sofia  ->  403
+POST {{host}}/inscripciones
+Content-Type: application/json
+Authorization: Bearer {{tokenKarla}}
+
+{ "horarioId": 3, "miembroId": 3 }
+
+
+### 43. Registro con contrasena corta  ->  400
+POST {{host}}/auth/registro
+Content-Type: application/json
+
+{ "correo": "omar@itson.mx", "password": "123" }
+
+
+### 44. Registro valido  ->  201 con token (repetirlo da 409)
+POST {{host}}/auth/registro
+Content-Type: application/json
+
+{ "correo": "omar@itson.mx", "password": "gimnasio2026" }

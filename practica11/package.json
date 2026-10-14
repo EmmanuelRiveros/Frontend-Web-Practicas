@@ -1,0 +1,17 @@
+{
+  "name": "practica11",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview",
+    "verificar:componentes": "node scripts/verificar-componentes.cjs"
+  },
+  "devDependencies": {
+    "playwright": "^1.62.1",
+    "typescript": "~6.0.2",
+    "vite": "^8.3.0"
+  }
+}

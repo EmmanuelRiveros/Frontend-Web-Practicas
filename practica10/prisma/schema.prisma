@@ -1,0 +1,84 @@
+generator client {
+  // En Prisma 7 el generador se llama "prisma-client" y el `output`
+  // es obligatorio: el cliente se genera dentro de src/, no dentro
+  // de node_modules.
+  provider = "prisma-client"
+  output   = "../src/generado/prisma"
+  moduleFormat = "cjs"
+}
+
+datasource db {
+  provider = "mysql"
+}
+
+model Clase {
+  id     Int    @id @default(autoincrement())
+  nombre String @db.VarChar(80)
+  descripcion String? @db.VarChar(255)
+
+  horarios Horario[]
+
+  @@map("clases")
+}
+
+model Horario {
+  id         Int    @id @default(autoincrement())
+  claseId    Int
+  dia        String @db.VarChar(20)
+  horaInicio String @db.VarChar(5)
+  cupoMaximo Int
+  entrenador String @db.VarChar(80)
+
+  clase         Clase         @relation(fields: [claseId], references: [id], onDelete: Cascade)
+  inscripciones Inscripcion[]
+
+  @@index([claseId])
+  @@map("horarios")
+}
+
+model Miembro {
+  id        Int     @id @default(autoincrement())
+  nombre    String  @db.VarChar(120)
+  correo    String  @unique @db.VarChar(160)
+  membresia String  @db.VarChar(20)
+  activo    Boolean @default(true)
+
+  inscripciones Inscripcion[]
+
+  @@map("miembros")
+}
+
+enum EstadoInscripcion {
+  confirmada
+  cancelada
+}
+
+model Inscripcion {
+  id        Int      @id @default(autoincrement())
+  horarioId Int
+  miembroId Int
+  estado    EstadoInscripcion @default(confirmada)
+  creadaEn  DateTime @default(now())
+
+  horario Horario @relation(fields: [horarioId], references: [id], onDelete: Cascade)
+  miembro Miembro @relation(fields: [miembroId], references: [id], onDelete: Cascade)
+
+  // Regla 1 (no duplicada), ahora tambien a nivel de base de datos.
+  @@unique([horarioId, miembroId])
+  @@index([miembroId])
+  @@map("inscripciones")
+}
+
+// NUEVO (Practica 10, Paso 7): quien inicia sesion.
+// rol va como texto para que el repositorio devuelva el mismo Rol del
+// dominio sin traducir entre dos enums.
+model Usuario {
+  id           Int      @id @default(autoincrement())
+  correo       String   @unique @db.VarChar(160)
+  passwordHash String   @db.VarChar(72)
+  rol          String   @default("miembro") @db.VarChar(20)
+  miembroId    Int?
+  creadoEn     DateTime @default(now())
+
+  @@map("usuarios")
+}

@@ -1,0 +1,15 @@
+<!doctype html><html lang="es"><meta charset="utf-8"><title>Práctica 10 Registro real de consola</title><style>*{box-sizing:border-box}body{margin:0;padding:22px;font:18px Arial;background:#f3f6f8;color:#172c3b}main{width:100%;max-width:1100px;margin:auto}h1{font-size:27px;margin:0 0 12px}h2{font-size:22px}h3{font-size:24px;color:#a23926}article{background:white;padding:20px;border:1px solid #c2cdd5;margin:18px 0}pre{font:18px/1.35 Consolas,monospace;white-space:pre-wrap;overflow-wrap:anywhere}p{line-height:1.4}</style><main><h1>Práctica 10 Registro real de consola</h1><p>Extracto de servidor.log capturado durante las pruebas.</p><pre>[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 36ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /auth/login - 123ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /inscripciones - 42ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /inscripciones - 13ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -&gt; 409 CupoLlenoError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -&gt; 409 InscripcionDuplicadaError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -&gt; 404 HorarioNoEncontradoError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.    WARN [Dominio] POST /inscripciones -&gt; 404 MiembroNoEncontradoError
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /inscripciones - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] DELETE /inscripciones/1 - 10ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /inscripciones - 24ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases - 1ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] POST /clases - 7ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] GET /clases/3 - 2ms
+[Nest] 56568  - 13/10/2026, 5:50:28 p.m.     LOG [HTTP] PATCH /clases/3 - 8ms</pre></main></html>
