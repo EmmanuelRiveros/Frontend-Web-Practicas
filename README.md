@@ -37,17 +37,6 @@ Si el servicio recibiera `InMemoryPrestamoRepository`, quedaria amarrado a esa i
 
 En principio se tocaria el archivo de infraestructura donde esta `InMemoryPrestamoRepository`, creando otra clase que implemente el mismo contrato. Tambien se cambiaria el ensamblaje de `main.ts` para instanciar la nueva clase. El servicio, los DTO y la regla de negocio se quedan igual porque dependen de interfaces, no de la tecnologia de almacenamiento.
 
----
-
-# Practica 4 De la capa de dominio a una API HTTP
-
-En esta práctica la capa de dominio de la práctica anterior se expone por medio de una API REST hecha con Express. Las carpetas `dominio`, `infra` y `servicios` se conservaron sin cambios; la API solo traduce HTTP hacia el Service y convierte sus resultados al contrato público.
-
-## Como correrla
-
-```bash
-npm install
-npm run dev
 ```
 
 También funciona `npm run servidor`. Al iniciar, abre `http://localhost:3000` para usar el cliente HTML o abre `practica4.http` con la extensión REST Client de VS Code para enviar las peticiones de prueba.
