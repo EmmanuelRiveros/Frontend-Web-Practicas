@@ -1,0 +1,87 @@
+/* ==========================================================================
+   index.css — los estilos de la Práctica 12A. Ya vienen hechos:
+   reemplazan el index.css que genera Vite. CSS plano, una clase por pieza.
+   ========================================================================== */
+
+:root {
+  --color-cian:   #00aeef;
+  --color-azul:   #0066cc;
+  --color-morado: #8c52ff;
+  --color-verde:  #2e9e5b;
+  --color-tinta:  #111827;
+  --color-texto:  #374151;
+  --color-tenue:  #6b7280;
+  --color-linea:  #e5e7eb;
+  --color-fondo:  #f7f8fc;
+  font-family: "Barlow", "Segoe UI", system-ui, sans-serif;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; }
+
+.pagina {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 24px;
+}
+
+/* <Saludo> */
+.saludo h1 { margin: 0; font-size: 36px; color: var(--color-tinta); }
+.saludo p  { margin: 6px 0 0; color: var(--color-tenue); }
+
+/* La rejilla donde caen las tarjetas */
+.equipo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+  margin-top: 32px;
+}
+
+/* <TarjetaPerfil> */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  padding: 24px;
+  background: #fff;
+  border: 1px solid var(--color-linea);
+  border-radius: 14px;
+  text-align: center;
+}
+
+.tarjeta__avatar {
+  display: grid;
+  place-items: center;
+  width: 72px;
+  height: 72px;
+  border-radius: 50%;
+  background: var(--color-cian);
+  color: #fff;
+  font-size: 26px;
+  font-weight: 700;
+}
+
+.tarjeta__nombre  { margin: 0; font-size: 20px; color: var(--color-tinta); }
+.tarjeta__carrera { margin: 0; color: var(--color-tenue); }
+.tarjeta__semestre { margin: 0; font-weight: 600; color: var(--color-azul); }
+
+/* Opcional: la tarjeta cuando los datos no son válidos */
+.tarjeta--error { border-color: #dc2626; color: #dc2626; }
+
+/* Opcional · <Insignia>: una etiqueta chica, con color según el tipo */
+.insignia {
+  display: inline-block;
+  padding: 3px 12px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  color: #fff;
+}
+
+.insignia--info  { background: var(--color-azul); }
+.insignia--exito { background: var(--color-verde); }
+.insignia--extra { background: var(--color-morado); }

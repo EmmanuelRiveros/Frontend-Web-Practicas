@@ -1,0 +1,25 @@
+{
+  "node": "v24.11.1",
+  "casos": [
+    {
+      "caso": "01-swc-sin-configuracion",
+      "codigo": 1,
+      "correcto": true
+    },
+    {
+      "caso": "02-swc-clasico",
+      "codigo": 0,
+      "correcto": true
+    },
+    {
+      "caso": "03-swc-automatico",
+      "codigo": 0,
+      "correcto": true
+    },
+    {
+      "caso": "04-prop-obligatoria",
+      "codigo": 2,
+      "correcto": true
+    }
+  ]
+}

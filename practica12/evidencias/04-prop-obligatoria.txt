@@ -1,0 +1,6 @@
+$ node node_modules\typescript\bin\tsc --ignoreConfig --noEmit --strict --jsx react-jsx --module esnext --moduleResolution bundler --target es2022 --skipLibCheck experimentos/SaludoSinNombre.tsx
+
+experimentos/SaludoSinNombre.tsx(3,35): error TS2741: Property 'nombre' is missing in type '{}' but required in type 'SaludoProps'.
+
+Código de salida: 2
+Resultado esperado: error

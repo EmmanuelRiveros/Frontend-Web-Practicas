@@ -1,0 +1,14 @@
+{
+  "name": "practica12-laboratorio-swc",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "clasico": "swc Saludo.jsx --config-file .swcrc.clasico -o salidas/clasico.js",
+    "automatico": "swc Saludo.jsx --config-file .swcrc.automatico -o salidas/automatico.js"
+  },
+  "devDependencies": {
+    "@swc/cli": "^0.8.1",
+    "@swc/core": "^1.16.18"
+  }
+}

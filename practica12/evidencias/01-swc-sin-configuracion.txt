@@ -1,0 +1,35 @@
+$ node node_modules\@swc\cli\bin\swc.js Saludo.jsx --no-swcrc
+
+  x Expression expected
+   ,-[Saludo.jsx:5:1]
+ 2 | 
+ 3 | export function Saludo({ nombre }) {
+ 4 |   return (
+ 5 |     <header className="saludo">
+   :     ^
+ 6 |       <h1>Hola, {nombre}</h1>
+ 7 |       <p>Mi primera aplicación de React</p>
+ 7 |     </header>
+   `----
+  x Expected ',', got 'ident'
+   ,-[Saludo.jsx:5:1]
+ 2 | 
+ 3 | export function Saludo({ nombre }) {
+ 4 |   return (
+ 5 |     <header className="saludo">
+   :             ^^^^^^^^^
+ 6 |       <h1>Hola, {nombre}</h1>
+ 7 |       <p>Mi primera aplicación de React</p>
+ 7 |     </header>
+   `----
+
+
+Caused by:
+    Syntax Error
+Error: Failed to compile 1 file with swc.
+    at Object.assertCompilationResult (E:\Descargas\github\clase\Biblioteca\practica12\laboratorio-swc\node_modules\@swc\cli\lib\swc\util.js:140:15)
+    at files (E:\Descargas\github\clase\Biblioteca\practica12\laboratorio-swc\node_modules\@swc\cli\lib\swc\file.js:196:18)
+    at async default_1 (E:\Descargas\github\clase\Biblioteca\practica12\laboratorio-swc\node_modules\@swc\cli\lib\swc\file.js:213:9)
+
+Código de salida: 1
+Resultado esperado: error

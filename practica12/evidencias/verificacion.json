@@ -1,0 +1,42 @@
+{
+  "node": "v24.11.1",
+  "casos": [
+    {
+      "caso": "Saludo recibe nombre por props",
+      "correcto": true
+    },
+    {
+      "caso": "Tres tarjetas",
+      "correcto": true
+    },
+    {
+      "caso": "Nombres desde props",
+      "correcto": true
+    },
+    {
+      "caso": "Iniciales calculadas",
+      "correcto": true
+    },
+    {
+      "caso": "Semestres numéricos",
+      "correcto": true
+    },
+    {
+      "caso": "Sin desbordamiento móvil",
+      "correcto": true
+    },
+    {
+      "caso": "Hola mundo sin JSX",
+      "correcto": true
+    },
+    {
+      "caso": "Tarjeta sin JSX con tres hijos",
+      "correcto": true
+    },
+    {
+      "caso": "Sin errores en navegador: []",
+      "correcto": true
+    }
+  ],
+  "errores": []
+}

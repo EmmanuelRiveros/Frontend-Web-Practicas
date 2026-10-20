@@ -1,0 +1,6 @@
+$ node node_modules\@swc\cli\bin\swc.js Saludo.jsx --config-file .swcrc.clasico -o salidas/clasico.js
+
+Successfully compiled 1 file with swc.
+
+Código de salida: 0
+Resultado esperado: exito
