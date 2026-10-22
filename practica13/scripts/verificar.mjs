@@ -1,0 +1,132 @@
+import { spawn, spawnSync } from 'node:child_process';
+import { writeFile, mkdir } from 'node:fs/promises';
+import { fileURLToPath } from 'node:url';
+import path from 'node:path';
+import assert from 'node:assert/strict';
+import { chromium } from 'playwright';
+
+const root = fileURLToPath(new URL('../', import.meta.url));
+const evidence = path.join(root, 'evidencias');
+await mkdir(evidence, { recursive: true });
+const casos = [];
+const comprobar = (caso, condicion, detalle) => {
+  assert.ok(condicion, `${caso}: ${JSON.stringify(detalle)}`);
+  casos.push({ caso, correcto: true, ...(detalle === undefined ? {} : { detalle }) });
+};
+const tscArgs = ['node_modules/typescript/bin/tsc', '--ignoreConfig', '--noEmit', '--strict', '--jsx', 'react-jsx', '--module', 'esnext', '--moduleResolution', 'bundler', '--target', 'es2022', '--skipLibCheck', 'experimentos/OnClickIncorrecto.tsx'];
+const tipos = spawnSync(process.execPath, tscArgs, { cwd: root, encoding: 'utf8' });
+const textoTipos = `$ node ${tscArgs.join(' ')}\n\n${tipos.stdout}${tipos.stderr}\nCódigo de salida: ${tipos.status}\n`;
+await writeFile(path.join(evidence, 'onclick-typescript.txt'), textoTipos);
+comprobar('TypeScript rechaza ejecutar onAgregar como onClick', tipos.status !== 0 && /TS2322/.test(textoTipos) && /void/.test(textoTipos));
+
+const server = spawn(process.execPath, ['node_modules/vite/bin/vite.js', '--host', '127.0.0.1', '--port', '5183', '--strictPort'], { cwd: root, stdio: ['ignore', 'pipe', 'pipe'] });
+let registroServidor = '';
+server.stdout.on('data', d => registroServidor += d);
+server.stderr.on('data', d => registroServidor += d);
+let browser;
+let temporizador;
+try {
+  await Promise.race([
+    new Promise((resolve, reject) => { server.stdout.on('data', () => { if (registroServidor.includes('5183')) resolve(); }); server.on('error', reject); server.on('exit', codigo => reject(new Error('Vite no inició: ' + codigo + registroServidor))); }),
+    new Promise((_, reject) => { temporizador = setTimeout(() => reject(new Error('Vite no respondió')), 20000); }),
+  ]);
+  clearTimeout(temporizador);
+  browser = await chromium.launch({ headless: true, ...(process.platform === 'win32' ? { channel: 'chrome' } : {}) });
+  const page = await browser.newPage({ viewport: { width: 1280, height: 1450 }, deviceScaleFactor: 1.5 });
+  const errores = [], advertencias = [], solicitudesExternas = [];
+  page.on('pageerror', e => errores.push(e.message));
+  page.on('console', m => { if (m.type() === 'error') errores.push(m.text()); if (m.type() === 'warning') advertencias.push(m.text()); });
+  page.on('request', request => { if (!request.url().startsWith('http://127.0.0.1:5183/') && !request.url().startsWith('data:')) solicitudesExternas.push(request.url()); });
+  await page.goto('http://127.0.0.1:5183', { waitUntil: 'networkidle' });
+  await page.locator('.tarjeta').first().waitFor();
+  const tarjetas = page.locator('.tarjeta');
+  const contador = () => page.locator('.encabezado__carrito strong').innerText();
+  const total = () => page.locator('.pie__total').innerText();
+  const moneda = n => new Intl.NumberFormat('es-MX', { style: 'currency', currency: 'MXN' }).format(n);
+  const tarjeta = nombre => page.locator('.tarjeta').filter({ has: page.getByRole('heading', { name: nombre, exact: true }) });
+  comprobar('Catálogo inicial con doce tarjetas', await tarjetas.count() === 12);
+  comprobar('Cuatro filtros de categoría', JSON.stringify(await page.locator('.filtros button').allTextContents()).includes('accesorios') && await page.locator('.filtros button').count() === 4);
+  comprobar('Carrito inicial vacío', await contador() === '0' && await total() === moneda(0));
+  comprobar('Imágenes originales cargadas', await page.locator('img').evaluateAll(imgs => imgs.length === 13 && imgs.every(img => img.complete && img.naturalWidth > 0)));
+  comprobar('Dos productos agotados y deshabilitados', await page.locator('.tarjeta__existencia--agotado').count() === 2 && await page.locator('.tarjeta button:disabled').count() === 2);
+  comprobar('Pie fijo al borde inferior', await page.locator('.pie').evaluate(el => getComputedStyle(el).position === 'fixed' && Math.abs(el.getBoundingClientRect().bottom - innerHeight) < 1));
+  await page.screenshot({ path: path.join(evidence, '01-catalogo.png'), fullPage: true });
+  await tarjeta('Licra de compresión').screenshot({ path: path.join(evidence, '06-licra-agotada.png') });
+  await tarjeta('Chamarra rompeviento').screenshot({ path: path.join(evidence, '07-chamarra-agotada.png') });
+  await page.locator('.tarjeta button:disabled').first().evaluate(el => el.click());
+  comprobar('Intentar activar un agotado no suma piezas', await contador() === '0');
+
+  await page.setViewportSize({ width: 1280, height: 800 });
+  await page.getByRole('button', { name: 'calzado', exact: true }).click();
+  comprobar('Filtro calzado muestra cuatro productos', await tarjetas.count() === 4);
+  comprobar('Filtro activo con clase y estado accesible', await page.getByRole('button', { name: 'calzado', exact: true }).getAttribute('aria-pressed') === 'true' && (await page.locator('.filtros__boton--activo').textContent()).trim() === 'calzado');
+  await page.screenshot({ path: path.join(evidence, '02-filtro-calzado.png'), fullPage: true });
+  await tarjeta('Tenis para correr Vento').getByRole('button').click();
+  comprobar('Agregar Vento actualiza contador y total', await contador() === '1' && await total() === moneda(1299));
+  await tarjeta('Tenis de entrenamiento Cross').getByRole('button').click();
+  comprobar('Agregar Cross conserva la primera pieza', await contador() === '2' && await total() === moneda(2848));
+
+  await page.setViewportSize({ width: 1280, height: 1100 });
+  await page.getByRole('button', { name: 'ropa', exact: true }).click();
+  comprobar('Filtro ropa muestra siete productos', await tarjetas.count() === 7);
+  comprobar('Cambiar de filtro conserva el carrito', await contador() === '2' && await total() === moneda(2848));
+  await tarjeta('Playera deportiva seca').getByRole('button').click();
+  comprobar('Tres productos suman 3247 pesos', await contador() === '3' && await total() === moneda(3247));
+  comprobar('Resumen del pie coincide con encabezado', await page.locator('.pie__resumen').innerText() === '3 pieza(s) en el carrito');
+  await page.screenshot({ path: path.join(evidence, '03-ropa-y-carrito.png'), fullPage: true });
+  await page.locator('.pie').screenshot({ path: path.join(evidence, '05-carrito-detalle.png') });
+  await page.setViewportSize({ width: 1280, height: 750 });
+  await page.getByRole('button', { name: 'accesorios', exact: true }).click();
+  comprobar('Filtro accesorios muestra solo las calcetas', await tarjetas.count() === 1 && await page.locator('.tarjeta__nombre').innerText() === 'Calcetas deportivas (3 pares)');
+  comprobar('El total no depende del filtro visible', await total() === moneda(3247) && await contador() === '3');
+  await page.screenshot({ path: path.join(evidence, '04-filtro-accesorios.png'), fullPage: true });
+  await page.getByRole('button', { name: 'todas', exact: true }).click();
+  comprobar('Todas recupera las doce tarjetas', await tarjetas.count() === 12);
+  await tarjeta('Tenis para correr Vento').getByRole('button').dblclick();
+  comprobar('Dos clics consecutivos no pierden actualizaciones', await contador() === '5' && await total() === moneda(5845));
+  await page.setViewportSize({ width: 390, height: 844 });
+  comprobar('La página móvil no desborda horizontalmente', await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth));
+  await page.evaluate(() => scrollTo(0, document.documentElement.scrollHeight));
+  const ultima = await tarjetas.last().getByRole('button').boundingBox(), pie = await page.locator('.pie').boundingBox();
+  comprobar('El pie móvil no tapa el último botón al llegar al final', ultima && pie && ultima.y + ultima.height <= pie.y);
+  await page.getByRole('button', { name: 'accesorios', exact: true }).click();
+  await page.evaluate(() => scrollTo(0, 0));
+  await page.screenshot({ path: path.join(evidence, '08-movil.png'), fullPage: true });
+  await page.reload({ waitUntil: 'networkidle' });
+  comprobar('Recargar reinicia el estado en memoria', await contador() === '0' && await total() === moneda(0) && await tarjetas.count() === 12);
+  comprobar('Aplicación sin errores ni advertencias de React', errores.length === 0 && advertencias.length === 0, { errores, advertencias });
+  comprobar('Sin solicitudes a API ni recursos externos', solicitudesExternas.length === 0, solicitudesExternas);
+
+  const lab = await browser.newPage({ viewport: { width: 1200, height: 800 }, deviceScaleFactor: 1.5 });
+  const erroresMutacion = [];
+  lab.on('pageerror', e => erroresMutacion.push(e.message));
+  lab.on('console', m => { if (m.type() === 'error') erroresMutacion.push(m.text()); });
+  await lab.goto('http://127.0.0.1:5183/experimentos/index.html', { waitUntil: 'networkidle' });
+  await lab.getByRole('button', { name: 'Mutar con push', exact: true }).click();
+  comprobar('push cambia el arreglo pero el contador no se actualiza', await lab.getByTestId('contador').innerText() === '0' && (await lab.locator('#registro').innerText()).includes('tras push: 1'));
+  comprobar('La mutación no lanza un error de JavaScript', erroresMutacion.length === 0);
+  await lab.locator('main').screenshot({ path: path.join(evidence, '10-mutacion-sin-render.png') });
+  await lab.getByRole('button', { name: 'Forzar otra actualización', exact: true }).click();
+  comprobar('Otro render revela la mutación anterior', await lab.getByTestId('contador').innerText() === '1');
+  await lab.getByRole('button', { name: 'Agregar con un arreglo nuevo', exact: true }).click();
+  comprobar('Un arreglo nuevo actualiza el contador', await lab.getByTestId('contador').innerText() === '2');
+  await lab.locator('main').screenshot({ path: path.join(evidence, '11-estado-actualizado.png') });
+  const erroresOnClick = [];
+  const fallo = await browser.newPage({ viewport: { width: 1200, height: 700 }, deviceScaleFactor: 1.5 });
+  fallo.on('console', m => { if (m.type() === 'error') erroresOnClick.push(m.text()); });
+  fallo.on('pageerror', e => erroresOnClick.push(e.message));
+  await fallo.goto('http://127.0.0.1:5183/experimentos/index.html?caso=onclick', { waitUntil: 'networkidle' });
+  await fallo.getByRole('alert').waitFor();
+  comprobar('Invocar onAgregar durante render provoca el error esperado', /Too many re-renders/.test(await fallo.getByRole('alert').innerText()));
+  await fallo.locator('main').screenshot({ path: path.join(evidence, '09-onclick-durante-render.png') });
+  await writeFile(path.join(evidence, 'onclick-react.txt'), erroresOnClick.join('\n\n') + '\n');
+  const escapar = s => s.replaceAll('&', '&amp;').replaceAll('<', '&lt;').replaceAll('>', '&gt;');
+  await fallo.setContent(`<html lang="es"><meta charset="utf-8"><style>body{margin:0;padding:30px;font:17px system-ui,sans-serif;color:#111827}pre{padding:20px;white-space:pre-wrap;overflow-wrap:anywhere;font:16px/1.6 Consolas,monospace;background:#f1f5f9}</style><h1>Diagnóstico real de TypeScript</h1><pre>${escapar(textoTipos)}</pre></html>`);
+  await fallo.locator('body').screenshot({ path: path.join(evidence, '12-onclick-typescript.png') });
+  await writeFile(path.join(evidence, 'resultados.json'), JSON.stringify({ node: process.version, comprobaciones: casos, erroresAplicacion: errores, advertenciasAplicacion: advertencias, erroresEsperadosOnClick: erroresOnClick, erroresMutacion, solicitudesExternas }, null, 2) + '\n');
+  console.log(`${casos.length} comprobaciones correctas. Capturas guardadas en evidencias.`);
+} finally {
+  clearTimeout(temporizador);
+  if (browser) await browser.close();
+  server.kill();
+}

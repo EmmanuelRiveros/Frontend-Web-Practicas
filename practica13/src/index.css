@@ -1,0 +1,271 @@
+/* ==========================================================================
+   index.css — los estilos de la tienda (Prácticas 12B y 13).
+   CSS plano, una clase por pieza. No se toca en la práctica: se pega tal cual
+   en src/index.css. Ya trae lo de la Práctica 13 (cargando, error y pago).
+   ========================================================================== */
+
+:root {
+  --color-cian:   #00aeef;
+  --color-azul:   #0066cc;
+  --color-morado: #8c52ff;
+  --color-verde:  #2e9e5b;
+  --color-rojo:   #dc2626;
+  --color-tinta:  #111827;
+  --color-texto:  #374151;
+  --color-tenue:  #6b7280;
+  --color-linea:  #e5e7eb;
+  --color-fondo:  #f7f8fc;
+  --radio:        12px;
+  font-family: "Barlow", "Segoe UI", system-ui, sans-serif;
+  color: var(--color-texto);
+  background: var(--color-fondo);
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+body { margin: 0; }
+
+button { font: inherit; cursor: pointer; }
+button:disabled { cursor: not-allowed; }
+
+/* ---------- <Layout> ---------- */
+.tienda {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.contenido {
+  flex: 1;
+  width: 100%;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 28px 24px 120px;   /* abajo deja lugar para el pie fijo */
+}
+
+/* ---------- <Encabezado> ---------- */
+.encabezado {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 32px;
+  background: #fff;
+  border-bottom: 1px solid var(--color-linea);
+}
+
+.encabezado__marca {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--color-tinta);
+}
+
+.encabezado__carrito {
+  padding: 6px 14px;
+  border-radius: 999px;
+  background: var(--color-fondo);
+  border: 1px solid var(--color-linea);
+  font-weight: 600;
+}
+
+.encabezado__carrito strong { color: var(--color-azul); }
+
+/* ---------- Título de la página ---------- */
+.portada h1 { margin: 0; font-size: 32px; color: var(--color-tinta); }
+.portada p  { margin: 6px 0 0; color: var(--color-tenue); }
+
+/* ---------- <Filtros> ---------- */
+.filtros {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 22px 0;
+}
+
+.filtros__boton {
+  padding: 7px 16px;
+  border: 1px solid var(--color-linea);
+  border-radius: 999px;
+  background: #fff;
+  color: var(--color-texto);
+  text-transform: capitalize;
+}
+
+.filtros__boton--activo {
+  background: var(--color-azul);
+  border-color: var(--color-azul);
+  color: #fff;
+}
+
+/* ---------- <Catalogo> ---------- */
+.catalogo {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 20px;
+}
+
+/* ---------- <TarjetaProducto> ---------- */
+.tarjeta {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+  overflow: hidden;
+}
+
+.tarjeta__imagen {
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  object-fit: cover;
+  background: var(--color-linea);
+}
+
+.tarjeta__cuerpo {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  padding: 14px 16px 16px;
+}
+
+.tarjeta__nombre { margin: 0; font-size: 17px; color: var(--color-tinta); }
+.tarjeta__precio { margin: 0; font-size: 20px; font-weight: 700; color: var(--color-azul); }
+.tarjeta__existencia { margin: 0; font-size: 14px; color: var(--color-tenue); }
+.tarjeta__existencia--agotado { color: var(--color-rojo); font-weight: 600; }
+
+.tarjeta__boton {
+  margin-top: auto;
+  padding: 10px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-azul);
+  color: #fff;
+  font-weight: 600;
+}
+
+.tarjeta__boton:disabled { background: var(--color-linea); color: var(--color-tenue); }
+
+/* ---------- <PiePagina>: el carrito, fijo abajo ---------- */
+.pie {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 14px 32px;
+  background: var(--color-tinta);
+  color: #fff;
+}
+
+.pie__resumen { font-size: 17px; }
+.pie__total { font-size: 22px; font-weight: 700; color: var(--color-cian); }
+
+.pie__boton {
+  padding: 9px 18px;
+  border: 1px solid #fff;
+  border-radius: 8px;
+  background: transparent;
+  color: #fff;
+}
+
+/* ---------- Opcional 12B: la lista dentro del carrito ---------- */
+.pie__lista {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  font-size: 14px;
+  color: #d1d5db;
+}
+
+/* ---------- Práctica 13 · <Cargando> y <Error> ---------- */
+.cargando {
+  padding: 60px 0;
+  text-align: center;
+  color: var(--color-tenue);
+}
+
+.cargando__rueda {
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 14px;
+  border: 4px solid var(--color-linea);
+  border-top-color: var(--color-azul);
+  border-radius: 50%;
+  animation: girar 0.8s linear infinite;
+}
+
+@keyframes girar { to { transform: rotate(360deg); } }
+
+.error {
+  padding: 24px;
+  border: 1px solid var(--color-rojo);
+  border-radius: var(--radio);
+  background: #fef2f2;
+  color: var(--color-rojo);
+  text-align: center;
+}
+
+.error button {
+  margin-top: 12px;
+  padding: 8px 18px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-rojo);
+  color: #fff;
+}
+
+/* ---------- Práctica 13 · <FormularioPago> ---------- */
+.pago {
+  display: grid;
+  gap: 12px;
+  max-width: 420px;
+  margin: 32px 0 0;
+  padding: 22px;
+  background: #fff;
+  border: 1px solid var(--color-linea);
+  border-radius: var(--radio);
+}
+
+.pago h2 { margin: 0; font-size: 20px; color: var(--color-tinta); }
+
+.pago label { display: grid; gap: 4px; font-size: 14px; font-weight: 600; }
+
+.pago input {
+  padding: 9px 12px;
+  border: 1px solid var(--color-linea);
+  border-radius: 8px;
+  font: inherit;
+}
+
+.pago__error { margin: 0; color: var(--color-rojo); font-size: 14px; }
+
+.pago button {
+  padding: 11px;
+  border: 0;
+  border-radius: 8px;
+  background: var(--color-verde);
+  color: #fff;
+  font-weight: 700;
+}
+
+.pago button:disabled { opacity: 0.6; }
+
+.confirmacion {
+  margin: 32px 0 0;
+  padding: 18px 22px;
+  border-radius: var(--radio);
+  background: #ecfdf5;
+  border: 1px solid var(--color-verde);
+  color: var(--color-verde);
+  font-weight: 600;
+}

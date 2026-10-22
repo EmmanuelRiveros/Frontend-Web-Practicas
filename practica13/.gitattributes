@@ -1,0 +1,4 @@
+# Recursos del profesor: conservar los bytes originales en cualquier plataforma.
+src/index.css -text
+src/datos.ts -text
+public/img/* -text

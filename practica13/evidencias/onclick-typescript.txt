@@ -1,0 +1,5 @@
+$ node node_modules/typescript/bin/tsc --ignoreConfig --noEmit --strict --jsx react-jsx --module esnext --moduleResolution bundler --target es2022 --skipLibCheck experimentos/OnClickIncorrecto.tsx
+
+experimentos/OnClickIncorrecto.tsx(5,18): error TS2322: Type 'void' is not assignable to type 'MouseEventHandler<HTMLButtonElement> | undefined'.
+
+Código de salida: 2

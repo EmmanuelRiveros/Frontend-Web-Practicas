@@ -1,0 +1,137 @@
+{
+  "node": "v24.11.1",
+  "comprobaciones": [
+    {
+      "caso": "TypeScript rechaza ejecutar onAgregar como onClick",
+      "correcto": true
+    },
+    {
+      "caso": "Catálogo inicial con doce tarjetas",
+      "correcto": true
+    },
+    {
+      "caso": "Cuatro filtros de categoría",
+      "correcto": true
+    },
+    {
+      "caso": "Carrito inicial vacío",
+      "correcto": true
+    },
+    {
+      "caso": "Imágenes originales cargadas",
+      "correcto": true
+    },
+    {
+      "caso": "Dos productos agotados y deshabilitados",
+      "correcto": true
+    },
+    {
+      "caso": "Pie fijo al borde inferior",
+      "correcto": true
+    },
+    {
+      "caso": "Intentar activar un agotado no suma piezas",
+      "correcto": true
+    },
+    {
+      "caso": "Filtro calzado muestra cuatro productos",
+      "correcto": true
+    },
+    {
+      "caso": "Filtro activo con clase y estado accesible",
+      "correcto": true
+    },
+    {
+      "caso": "Agregar Vento actualiza contador y total",
+      "correcto": true
+    },
+    {
+      "caso": "Agregar Cross conserva la primera pieza",
+      "correcto": true
+    },
+    {
+      "caso": "Filtro ropa muestra siete productos",
+      "correcto": true
+    },
+    {
+      "caso": "Cambiar de filtro conserva el carrito",
+      "correcto": true
+    },
+    {
+      "caso": "Tres productos suman 3247 pesos",
+      "correcto": true
+    },
+    {
+      "caso": "Resumen del pie coincide con encabezado",
+      "correcto": true
+    },
+    {
+      "caso": "Filtro accesorios muestra solo las calcetas",
+      "correcto": true
+    },
+    {
+      "caso": "El total no depende del filtro visible",
+      "correcto": true
+    },
+    {
+      "caso": "Todas recupera las doce tarjetas",
+      "correcto": true
+    },
+    {
+      "caso": "Dos clics consecutivos no pierden actualizaciones",
+      "correcto": true
+    },
+    {
+      "caso": "La página móvil no desborda horizontalmente",
+      "correcto": true
+    },
+    {
+      "caso": "El pie móvil no tapa el último botón al llegar al final",
+      "correcto": true
+    },
+    {
+      "caso": "Recargar reinicia el estado en memoria",
+      "correcto": true
+    },
+    {
+      "caso": "Aplicación sin errores ni advertencias de React",
+      "correcto": true,
+      "detalle": {
+        "errores": [],
+        "advertencias": []
+      }
+    },
+    {
+      "caso": "Sin solicitudes a API ni recursos externos",
+      "correcto": true,
+      "detalle": []
+    },
+    {
+      "caso": "push cambia el arreglo pero el contador no se actualiza",
+      "correcto": true
+    },
+    {
+      "caso": "La mutación no lanza un error de JavaScript",
+      "correcto": true
+    },
+    {
+      "caso": "Otro render revela la mutación anterior",
+      "correcto": true
+    },
+    {
+      "caso": "Un arreglo nuevo actualiza el contador",
+      "correcto": true
+    },
+    {
+      "caso": "Invocar onAgregar durante render provoca el error esperado",
+      "correcto": true
+    }
+  ],
+  "erroresAplicacion": [],
+  "advertenciasAplicacion": [],
+  "erroresEsperadosOnClick": [
+    "%o\n\n%s\n\n%s\n Error: Too many re-renders. React limits the number of renders to prevent an infinite loop.\n    at renderWithHooksAgain (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:4441:53)\n    at renderWithHooks (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:4399:62)\n    at updateFunctionComponent (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:5772:16)\n    at beginWork (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:6388:20)\n    at runWithFiberInDEV (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:941:66)\n    at performUnitOfWork (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:9145:92)\n    at workLoopSync (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:9041:37)\n    at renderRootSync (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:9025:6)\n    at performWorkOnRoot (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:8712:27)\n    at performWorkOnRootViaSchedulerTask (http://127.0.0.1:5183/node_modules/.vite/deps/react-dom_client.js?v=8fef6748:9831:4) The above error occurred in the <OnClickIncorrecto> component. React will try to recreate this component tree from scratch using the error boundary you provided, LimiteDeError."
+  ],
+  "erroresMutacion": [],
+  "solicitudesExternas": []
+}

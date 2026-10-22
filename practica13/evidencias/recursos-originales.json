@@ -1,0 +1,65 @@
+{
+  "origen": "codigo-base-p13.zip",
+  "archivos": [
+    {
+      "archivo": "datos.ts",
+      "sha256": "4ccbbfeeab212ba02a2698eb0e5463cf50d16853bbc2539573c57adaaa7b4680"
+    },
+    {
+      "archivo": "img/logo.svg",
+      "sha256": "c03aef59ba4de65c68fb5c253b6ae036acaa2bffba208271d71d3fa8ba514d4a"
+    },
+    {
+      "archivo": "img/producto-01.jpg",
+      "sha256": "7d365c1698ef2fac60624b0ad9d83954b94829728cfef063a030146f2a4bde3a"
+    },
+    {
+      "archivo": "img/producto-02.jpg",
+      "sha256": "d040472b2f5604f6ba825262787530383b6263d2d5ed492fd095c48a74127f58"
+    },
+    {
+      "archivo": "img/producto-03.jpg",
+      "sha256": "70e67d4a60136d08010fb681cea89ba6833f59d8767647c8a7894e1adbac9815"
+    },
+    {
+      "archivo": "img/producto-04.jpg",
+      "sha256": "29964e6d42371209a84a528a54ef4d7ee62a3c1d0da7a0fe2d9228fd929dfb2a"
+    },
+    {
+      "archivo": "img/producto-05.jpg",
+      "sha256": "8bfbdbf5c40729aabb77c4798bcf52e1e4eb439c8225da8cdec0dae173013384"
+    },
+    {
+      "archivo": "img/producto-06.jpg",
+      "sha256": "358998ded7421c70df1b79b159d7298911afb165e0333c6265c92c624b27d483"
+    },
+    {
+      "archivo": "img/producto-07.jpg",
+      "sha256": "c1a9b81dfee5d276e0530260923b54d18c7de7485fb92511c8fbef1989073567"
+    },
+    {
+      "archivo": "img/producto-08.jpg",
+      "sha256": "f65a17d1cf00fa18dedf31bce3d918c14723c8fdb358133e72181902145b6910"
+    },
+    {
+      "archivo": "img/producto-09.jpg",
+      "sha256": "2102c40d62afe713fb2139855f6402104d5940648fa40c9786fe5d7c2135af6c"
+    },
+    {
+      "archivo": "img/producto-10.jpg",
+      "sha256": "4f79ebc72ce933bffbb99e0e07a0b66cdd8117046c834f04ffab55f4665cbba8"
+    },
+    {
+      "archivo": "img/producto-11.jpg",
+      "sha256": "4f585dedfb21857c7533149b98f009ccc128046b9438c16014f176f0ee6e0e74"
+    },
+    {
+      "archivo": "img/producto-12.jpg",
+      "sha256": "cb927830d95b40871ffbc093496513f5bc0c45a475edb1742ddcfaed202b316d"
+    },
+    {
+      "archivo": "index.css",
+      "sha256": "ffa61d67ef9da7b422a919668b5c5cb9e41cd33564a9a84f6ba659f0940df0ee"
+    }
+  ]
+}
