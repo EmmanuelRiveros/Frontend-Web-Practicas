@@ -1,0 +1,3 @@
+# Estilos e imágenes del profesor conservados byte por byte.
+src/index.css -text
+public/img/* -text

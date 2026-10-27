@@ -1,0 +1,26 @@
+{
+  "archivosFuenteSinCambios": [
+    "prisma.config.ts",
+    "prisma/schema.prisma",
+    "prisma/seed.ts",
+    "src/main.ts",
+    "src/app.module.ts",
+    "src/pedidos/pedidos.controller.ts",
+    "src/pedidos/pedidos.module.ts",
+    "src/pedidos/pedidos.service.ts",
+    "src/comun/sobre.interceptor.ts",
+    "src/prisma/prisma.service.ts",
+    "src/prisma/prisma.module.ts",
+    "src/productos/productos.module.ts",
+    "src/productos/productos.controller.ts",
+    "src/productos/productos.service.ts",
+    "src/pedidos/dto/crear-pedido.dto.ts"
+  ],
+  "prisma": "7.10.1",
+  "cambiosDeSoporte": [
+    "Dependencias y archivo de bloqueo",
+    "README y configuración de ejemplo",
+    "Migración inicial generada"
+  ],
+  "credencialesRealesIncluidas": false
+}

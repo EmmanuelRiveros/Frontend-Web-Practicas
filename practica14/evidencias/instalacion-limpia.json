@@ -1,0 +1,15 @@
+{
+  "frontend": {
+    "npmCi": true,
+    "compilacion": true,
+    "revisionCodigo": true,
+    "recursosOriginales": true
+  },
+  "backendEmpaquetado": {
+    "npmCi": true,
+    "generacionPrisma": true,
+    "compilacion": true,
+    "vulnerabilidadesProduccion": 0
+  },
+  "credencialesPrivadasExcluidas": true
+}

@@ -1,0 +1,6 @@
+{
+  "navegacionReal": true,
+  "urlTrasEnviar": "http://localhost:5173/experimentos/index.html?caso=formulario&correo=ejemplo%40example.test&telefono=6440000000",
+  "camposReiniciados": true,
+  "datosFicticios": true
+}

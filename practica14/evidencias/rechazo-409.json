@@ -1,0 +1,9 @@
+{
+  "estado": 409,
+  "respuesta": {
+    "message": "No hay suficientes piezas de Tenis para correr Vento (quedan 8)",
+    "error": "Conflict",
+    "statusCode": 409
+  },
+  "existenciaConservada": 8
+}

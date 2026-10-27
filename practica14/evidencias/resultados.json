@@ -1,0 +1,285 @@
+{
+  "casos": [
+    {
+      "caso": "Seeder: doce productos reales y sobre data meta",
+      "correcto": true
+    },
+    {
+      "caso": "Catálogo de doce tarjetas desde la API",
+      "correcto": true
+    },
+    {
+      "caso": "StrictMode produce dos GET iniciales",
+      "correcto": true
+    },
+    {
+      "caso": "Ambas peticiones iniciales recibieron 200",
+      "correcto": true
+    },
+    {
+      "caso": "Dos productos agotados deshabilitados",
+      "correcto": true
+    },
+    {
+      "caso": "Imágenes locales cargadas",
+      "correcto": true
+    },
+    {
+      "caso": "Filtro calzado conserva cuatro productos",
+      "correcto": true
+    },
+    {
+      "caso": "Filtro ropa conserva siete productos",
+      "correcto": true
+    },
+    {
+      "caso": "Filtro accesorios conserva un producto",
+      "correcto": true
+    },
+    {
+      "caso": "Filtrar no repite la consulta a la API",
+      "correcto": true
+    },
+    {
+      "caso": "Carrito suma una pieza y precio",
+      "correcto": true
+    },
+    {
+      "caso": "Correo sin arroba rechazado antes de enviar",
+      "correcto": true
+    },
+    {
+      "caso": "Teléfono incompleto rechazado antes de enviar",
+      "correcto": true
+    },
+    {
+      "caso": "Entradas inválidas no generan POST",
+      "correcto": true
+    },
+    {
+      "caso": "El formulario también muestra la validación HTTP 400 del backend",
+      "correcto": true
+    },
+    {
+      "caso": "El botón se deshabilita mientras se envía el pago",
+      "correcto": true
+    },
+    {
+      "caso": "Los campos se bloquean durante el envío",
+      "correcto": true
+    },
+    {
+      "caso": "El catálogo no cambia el carrito durante el pago",
+      "correcto": true
+    },
+    {
+      "caso": "Pedido real confirmado HTTP 201",
+      "correcto": true
+    },
+    {
+      "caso": "Folio y total devueltos por la API",
+      "correcto": true
+    },
+    {
+      "caso": "Carrito vacío tras el pago",
+      "correcto": true
+    },
+    {
+      "caso": "Existencia visible actualizada de tres a dos",
+      "correcto": true
+    },
+    {
+      "caso": "Correo y teléfono se reinician al confirmar",
+      "correcto": true
+    },
+    {
+      "caso": "El formulario evita navegar al pagar",
+      "correcto": true
+    },
+    {
+      "caso": "Contrato del pedido contiene los IDs del carrito",
+      "correcto": true
+    },
+    {
+      "caso": "HTTP 409 muestra el mensaje literal de la API",
+      "correcto": true
+    },
+    {
+      "caso": "El rechazo conserva las nueve piezas",
+      "correcto": true
+    },
+    {
+      "caso": "El rechazo conserva los campos controlados",
+      "correcto": true
+    },
+    {
+      "caso": "409 no modifica la existencia real",
+      "correcto": true
+    },
+    {
+      "caso": "API apagada muestra error y reintento",
+      "correcto": true
+    },
+    {
+      "caso": "Reintento recupera el catálogo con una nueva petición",
+      "correcto": true
+    },
+    {
+      "caso": "Sin arreglo de dependencias se repite GET tras cada render",
+      "correcto": true
+    },
+    {
+      "caso": "Sin preventDefault el navegador navega con los campos en la URL",
+      "correcto": true
+    },
+    {
+      "caso": "La navegación del formulario reinicia el estado",
+      "correcto": true
+    },
+    {
+      "caso": "Vista móvil sin desbordamiento horizontal",
+      "correcto": true
+    },
+    {
+      "caso": "Sin excepciones JavaScript en la aplicación",
+      "correcto": true
+    }
+  ],
+  "folio": "PED-0002",
+  "total": 399,
+  "peticiones": [
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "POST",
+      "url": "http://localhost:3001/pedidos",
+      "estado": 400,
+      "cuerpo": {
+        "correo": "a@b",
+        "telefono": "6440000000",
+        "productos": [
+          "P-005"
+        ]
+      }
+    },
+    {
+      "metodo": "POST",
+      "url": "http://localhost:3001/pedidos",
+      "estado": 201,
+      "cuerpo": {
+        "correo": "cliente@example.test",
+        "telefono": "6440000000",
+        "productos": [
+          "P-005"
+        ]
+      }
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "POST",
+      "url": "http://localhost:3001/pedidos",
+      "estado": 409,
+      "cuerpo": {
+        "correo": "cliente@example.test",
+        "telefono": "6440000000",
+        "productos": [
+          "P-001",
+          "P-001",
+          "P-001",
+          "P-001",
+          "P-001",
+          "P-001",
+          "P-001",
+          "P-001",
+          "P-001"
+        ]
+      }
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": null,
+      "fallo": "net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": null,
+      "fallo": "net::ERR_CONNECTION_REFUSED"
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    },
+    {
+      "metodo": "GET",
+      "url": "http://localhost:3001/productos",
+      "estado": 200
+    }
+  ],
+  "errores": [],
+  "nota": "Respuestas de NestJS y MySQL reales; los datos de contacto son ficticios. Las capturas de Red son del frontend auténtico de Chrome DevTools."
+}
