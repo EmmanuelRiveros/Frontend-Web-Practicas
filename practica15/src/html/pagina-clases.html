@@ -1,0 +1,33 @@
+<!--
+  pagina-clases.html — el marcado de <PaginaClases>. Se pega dentro del return.
+  Al convertirlo a JSX (Paso 3 de la Práctica 15):
+    1. class → className.
+    2. <img ...> → <img ... />: en JSX toda etiqueta se cierra.
+    3. Deja UNA sola tarjeta y repítela con clases.map(...).
+    4. La tarjeta es un <a href>: cámbiala por <Link to={`/clases/${c.id}`}>.
+    5. Los valores fijos → {c.nombre}, {c.categoria}, {c.duracionMin}, {urlImagen(c.imagen)}.
+-->
+<section class="pagina__encabezado">
+  <h1>Clases</h1>
+  <p class="pagina__bajada">Elige una clase para ver sus horarios e inscribirte.</p>
+</section>
+
+<div class="rejilla">
+  <a href="/clases/1" class="tarjeta-clase">
+    <img class="tarjeta-clase__imagen" src="http://localhost:3000/img/clase-01.jpg" alt="Fuerza total">
+    <div class="tarjeta-clase__cuerpo">
+      <span class="etiqueta etiqueta--fuerza">fuerza</span>
+      <span class="tarjeta-clase__titulo">Fuerza total</span>
+      <span class="tarjeta-clase__meta">60 min</span>
+    </div>
+  </a>
+
+  <a href="/clases/2" class="tarjeta-clase">
+    <img class="tarjeta-clase__imagen" src="http://localhost:3000/img/clase-02.jpg" alt="Ciclismo indoor">
+    <div class="tarjeta-clase__cuerpo">
+      <span class="etiqueta etiqueta--cardio">cardio</span>
+      <span class="tarjeta-clase__titulo">Ciclismo indoor</span>
+      <span class="tarjeta-clase__meta">45 min</span>
+    </div>
+  </a>
+</div>

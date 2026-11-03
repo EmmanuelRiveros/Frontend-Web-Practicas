@@ -1,0 +1,40 @@
+<!--
+  pagina-clase.html — el marcado de <PaginaClase>: la clase y sus horarios.
+  Al convertirlo a JSX (Paso 4 de la Práctica 15):
+    1. class → className y <img ... />.
+    2. El enlace de regreso: <a href="/clases"> → <Link to="/clases">.
+    3. Los valores fijos → {clase.nombre}, {clase.descripcion}, {clase.duracionMin}…
+    4. Deja UN horario y repítelo con clase.horarios.map(...).
+    5. Las dos caras del horario (con lugares y lleno) → una sola que decide con h.disponibles === 0.
+-->
+<a href="/clases" class="detalle__volver">← Todas las clases</a>
+
+<article class="detalle">
+  <img class="detalle__imagen" src="http://localhost:3000/img/clase-01.jpg" alt="Fuerza total">
+  <div class="detalle__datos">
+    <span class="etiqueta etiqueta--fuerza">fuerza</span>
+    <h1>Fuerza total</h1>
+    <p class="pagina__bajada">Circuito con mancuernas y barra para trabajar el cuerpo completo. · 60 min</p>
+
+    <h2>Horarios</h2>
+    <ul class="horarios">
+      <!-- Un horario CON lugares -->
+      <li class="horario">
+        <div>
+          <div class="horario__dia">lunes · 07:00</div>
+          <div class="horario__meta">Ana Robles · 20 de 20 lugares</div>
+        </div>
+        <button class="boton boton--chico">Inscribirme</button>
+      </li>
+
+      <!-- Un horario LLENO -->
+      <li class="horario">
+        <div>
+          <div class="horario__dia">viernes · 18:00</div>
+          <div class="horario__meta">Ana Robles · 0 de 1 lugares</div>
+        </div>
+        <span class="horario__lleno">Lleno</span>
+      </li>
+    </ul>
+  </div>
+</article>

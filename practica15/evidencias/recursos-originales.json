@@ -1,0 +1,58 @@
+[
+  {
+    "archivo": "src/html/pagina-clases.html",
+    "sha256": "921bbf2fc7581546959d6c1162d85395de7265ce751e6079d0814f8dc56ef39c"
+  },
+  {
+    "archivo": "src/html/pagina-clase.html",
+    "sha256": "ccdcb41d41192866d516c217c281c4591e0cd663c26c25388822d89b72ddac36"
+  },
+  {
+    "archivo": "src/hooks/useClases.ts",
+    "sha256": "4f7cfc0bcccea30b3cb796c2b2393ed947e3640157b839d12b149d5e295c8fd4"
+  },
+  {
+    "archivo": "src/index.css",
+    "sha256": "13936ee878990f73afb45a924c2dde491189cce4edc4982a93bc467157e21aae"
+  },
+  {
+    "archivo": "src/servicios/api.ts",
+    "sha256": "4fe32816e20912ecbee18966c74c3fd113da5ad7167ec85cd6b24b88717af858"
+  },
+  {
+    "archivo": "src/servicios/gimnasio.ts",
+    "sha256": "f72c6e8714af031ab432e121e8665d25461a60630706c55ede9b70064aa7fa43"
+  },
+  {
+    "archivo": "public/logo.svg",
+    "sha256": "8ed615f8714f436e2f53459591ad4d86ee4d136def728e2ec3e94883077e2dbb"
+  },
+  {
+    "archivo": "src/tipos.ts",
+    "sha256": "9da1f24cb446eb9ad319287e312634e6bf627894f10c297f6704473d5b974719"
+  },
+  {
+    "archivo": "src/componentes/MensajeError.tsx",
+    "sha256": "4fc9e45c45b44c5bcf1776225afe9713698d2f3fa1354683af6d643dca10bcdb"
+  },
+  {
+    "archivo": "src/componentes/Encabezado.tsx",
+    "sha256": "d6df9a46e6e67ea8d37d27f75ff3d854d65bd5ad680453e2e29bd0f8e2364936"
+  },
+  {
+    "archivo": "src/componentes/Cargando.tsx",
+    "sha256": "3d29f7156af27e19fbde617a1bc5c983c02e4cc3b408e62790b8fbcdd024ece1"
+  },
+  {
+    "archivo": "src/componentes/Layout.tsx",
+    "sha256": "9d0e4959e0c967622484b57aacb964a1d05318ad0aaa5cd7dc8c8a0741098d20"
+  },
+  {
+    "archivo": "src/componentes/NoEncontrado.tsx",
+    "sha256": "0efe919b75c01c5696a34a0c6c886f2c326c607c4bd351fc497836c5ad571d8b"
+  },
+  {
+    "archivo": "src/componentes/PiePagina.tsx",
+    "sha256": "31bb60c32a6b1c6b2882ac897c0c3011855b17447e91a6229f8b41492f1ba696"
+  }
+]

@@ -1,0 +1,8 @@
+# Recursos originales del profesor, conservados byte por byte.
+src/index.css -text
+src/tipos.ts -text
+src/componentes/*.tsx -text
+src/hooks/useClases.ts -text
+src/servicios/*.ts -text
+src/html/*.html -text
+public/logo.svg -text

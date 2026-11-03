@@ -1,0 +1,48 @@
+{
+  "fecha": "2026-11-03T22:33:44.956Z",
+  "resultados": [
+    {
+      "caso": "Redirección inicial y catálogo de ocho clases con imágenes de la API",
+      "resultado": "correcto"
+    },
+    {
+      "caso": "Detalle con entrenador, disponibilidad y horario lleno sin botón",
+      "resultado": "correcto",
+      "documentosLink": 0
+    },
+    {
+      "caso": "Inscribirme navega a /entrar sin recargar",
+      "resultado": "correcto"
+    },
+    {
+      "caso": "Misma ruta dinámica de id 1 a 2 actualiza clase, entrenador y horarios",
+      "resultado": "correcto"
+    },
+    {
+      "caso": "Acceso directo y recarga de /clases/2",
+      "resultado": "correcto"
+    },
+    {
+      "caso": "Errores controlados para id no numérico, cero, decimal e inexistente",
+      "resultado": "correcto"
+    },
+    {
+      "caso": "404 conserva encabezado y pie y permite volver al catálogo",
+      "resultado": "correcto"
+    },
+    {
+      "caso": "Network real compara Link y a href",
+      "resultado": "correcto",
+      "documentosLink": 0,
+      "documentosHref": 1
+    },
+    {
+      "caso": "Experimento aislado reproduce datos obsoletos al omitir id del efecto",
+      "resultado": "correcto"
+    },
+    {
+      "caso": "Sin excepciones JavaScript en los recorridos",
+      "resultado": "correcto"
+    }
+  ]
+}

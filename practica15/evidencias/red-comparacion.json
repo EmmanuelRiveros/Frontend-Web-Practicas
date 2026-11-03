@@ -1,0 +1,154 @@
+{
+  "link": [
+    {
+      "url": "http://localhost:5173/logo.svg",
+      "tipo": "other"
+    },
+    {
+      "url": "http://localhost:3000/clases/1",
+      "tipo": "xhr"
+    },
+    {
+      "url": "http://localhost:3000/clases/1",
+      "tipo": "xhr"
+    }
+  ],
+  "href": [
+    {
+      "url": "http://localhost:5173/clases/1",
+      "tipo": "document"
+    },
+    {
+      "url": "http://localhost:5173/@vite/client",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/main.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/@react-refresh",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/vite/dist/client/env.mjs",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/react.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/react-dom_client.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/react-router.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/App.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/index.css",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/react-4hkZzRew.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/rolldown-runtime-SbdDWaPq.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/react-dom-CRx58tZq.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/componentes/Layout.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/componentes/NoEncontrado.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/paginas/PaginaClases.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/paginas/PaginaClase.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/paginas/PaginaEntrar.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/componentes/Encabezado.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/componentes/PiePagina.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/hooks/useClases.ts",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/componentes/Cargando.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/componentes/MensajeError.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/componentes/TarjetaClase.tsx",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/hooks/useClase.ts",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/servicios/api.ts",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/src/servicios/gimnasio.ts",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/node_modules/.vite/deps/axios.js?v=3f0e56a8",
+      "tipo": "script"
+    },
+    {
+      "url": "http://localhost:5173/logo.svg",
+      "tipo": "image"
+    },
+    {
+      "url": "http://localhost:3000/clases/1",
+      "tipo": "xhr"
+    },
+    {
+      "url": "http://localhost:3000/clases/1",
+      "tipo": "xhr"
+    },
+    {
+      "url": "http://localhost:5173/logo.svg",
+      "tipo": "other"
+    },
+    {
+      "url": "http://localhost:3000/img/clase-01.jpg",
+      "tipo": "image"
+    }
+  ]
+}
