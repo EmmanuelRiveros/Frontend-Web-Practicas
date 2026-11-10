@@ -1,0 +1,130 @@
+/* ==========================================================================
+   index.css — los estilos del gimnasio (Prácticas 15 a 18).
+   CSS plano, una clase por pieza. No se toca en la práctica: se pega tal cual
+   en src/index.css. Ya trae lo de las cuatro prácticas.
+   ========================================================================== */
+
+:root {
+  --tinta: #0f2233;
+  --texto: #33475b;
+  --apagado: #6b7f93;
+  --linea: #dde5ed;
+  --fondo: #f4f7fa;
+  --blanco: #ffffff;
+
+  --cian: #1fa8e0;
+  --verde: #5f9e1f;
+  --morado: #7b61e0;
+  --rojo: #d6435f;
+  --ambar: #c48f0a;
+
+  --radio: 12px;
+  --sombra: 0 1px 3px rgba(15, 34, 51, 0.08);
+  --sombra-alta: 0 6px 20px rgba(15, 34, 51, 0.12);
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  line-height: 1.55;
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+body { margin: 0; }
+h1, h2, h3 { color: var(--tinta); line-height: 1.2; margin: 0 0 0.4rem; }
+h1 { font-size: 1.9rem; }
+h2 { font-size: 1.3rem; }
+a { color: var(--cian); }
+
+/* ---------- <Layout> ---------- */
+.disposicion { min-height: 100vh; display: flex; flex-direction: column; }
+.disposicion__contenido { flex: 1; width: 100%; max-width: 1080px; margin: 0 auto; padding: 1.6rem 1.2rem 3rem; }
+
+/* ---------- <Encabezado> ---------- */
+.barra { position: sticky; top: 0; z-index: 10; background: var(--blanco); border-bottom: 1px solid var(--linea); }
+.barra__interior { max-width: 1080px; margin: 0 auto; padding: 0.7rem 1.2rem; display: flex; align-items: center; gap: 1.4rem; }
+.barra__marca { display: flex; align-items: center; gap: 0.55rem; font-weight: 700; font-size: 1.05rem; color: var(--tinta); text-decoration: none; }
+.barra__marca img { width: 30px; height: 30px; }
+.barra__enlaces { display: flex; gap: 0.35rem; list-style: none; margin: 0; padding: 0; }
+.barra__enlace { display: block; padding: 0.4rem 0.75rem; border-radius: 999px; text-decoration: none; color: var(--apagado); font-size: 0.94rem; font-weight: 600; }
+.barra__enlace:hover { background: var(--fondo); color: var(--tinta); }
+/* El estado activo lo pone NavLink solo. */
+.barra__enlace--activo { background: rgba(31, 168, 224, 0.12); color: var(--cian); }
+.barra__sesion { margin-left: auto; display: flex; align-items: center; gap: 0.7rem; }
+.barra__usuario { font-size: 0.9rem; color: var(--apagado); }
+/* Práctica 18 · el contador del store */
+.barra__contador { display: inline-block; min-width: 1.4rem; margin-left: 0.3rem; padding: 0 0.4rem; border-radius: 999px; background: var(--cian); color: var(--blanco); font-size: 0.78rem; text-align: center; }
+
+/* ---------- <PiePagina> ---------- */
+.pie { border-top: 1px solid var(--linea); background: var(--blanco); padding: 1.1rem 1.2rem; text-align: center; font-size: 0.85rem; color: var(--apagado); }
+
+/* ---------- botones ---------- */
+.boton { display: inline-flex; align-items: center; justify-content: center; gap: 0.4rem; border: 1px solid transparent; border-radius: 999px; padding: 0.5rem 1.1rem; font: inherit; font-weight: 600; font-size: 0.94rem; cursor: pointer; text-decoration: none; background: var(--cian); color: var(--blanco); }
+.boton:hover { filter: brightness(0.95); }
+.boton:disabled { opacity: 0.5; cursor: not-allowed; }
+.boton--secundario { background: var(--blanco); color: var(--tinta); border-color: var(--linea); }
+.boton--chico { padding: 0.3rem 0.75rem; font-size: 0.85rem; }
+.boton--ancho { width: 100%; }
+
+/* ---------- encabezado de cada página ---------- */
+.pagina__encabezado { margin-bottom: 1.3rem; }
+.pagina__bajada { margin: 0; max-width: 62ch; color: var(--apagado); }
+
+/* ---------- <PaginaClases> y <TarjetaClase> ---------- */
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.1rem; }
+.tarjeta-clase { display: flex; flex-direction: column; overflow: hidden; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); box-shadow: var(--sombra); color: inherit; text-decoration: none; transition: box-shadow 0.15s, transform 0.15s; }
+.tarjeta-clase:hover { box-shadow: var(--sombra-alta); transform: translateY(-2px); }
+.tarjeta-clase__imagen { display: block; width: 100%; aspect-ratio: 4 / 3; object-fit: cover; background: var(--linea); }
+.tarjeta-clase__cuerpo { display: flex; flex-direction: column; gap: 0.35rem; flex: 1; padding: 0.85rem 1rem 1rem; }
+.tarjeta-clase__titulo { font-size: 1.02rem; font-weight: 700; color: var(--tinta); }
+.tarjeta-clase__meta { font-size: 0.86rem; color: var(--apagado); }
+
+/* ---------- etiquetas ---------- */
+.etiqueta { display: inline-block; align-self: flex-start; padding: 0.14rem 0.6rem; border-radius: 999px; font-size: 0.76rem; font-weight: 700; text-transform: capitalize; background: var(--fondo); color: var(--apagado); }
+.etiqueta--fuerza { background: rgba(31, 168, 224, 0.12); color: #14708f; }
+.etiqueta--cardio { background: rgba(214, 67, 95, 0.12); color: #a8324a; }
+.etiqueta--flexibilidad { background: rgba(123, 97, 224, 0.12); color: #57429e; }
+
+/* ---------- <PaginaClase>: el detalle con sus horarios ---------- */
+.detalle { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr); gap: 1.6rem; align-items: start; }
+.detalle__imagen { display: block; width: 100%; border-radius: var(--radio); }
+.detalle__datos { display: flex; flex-direction: column; gap: 0.9rem; }
+.detalle__volver { display: inline-block; margin-bottom: 0.9rem; font-size: 0.9rem; font-weight: 600; }
+.horarios { display: grid; gap: 0.6rem; margin: 0; padding: 0; list-style: none; }
+.horario { display: flex; align-items: center; justify-content: space-between; gap: 1rem; padding: 0.7rem 0.9rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: 10px; }
+.horario__dia { font-weight: 700; color: var(--tinta); text-transform: capitalize; }
+.horario__meta { font-size: 0.86rem; color: var(--apagado); }
+.horario__lleno { font-size: 0.86rem; font-weight: 700; color: var(--ambar); }
+.horario__inscrito { font-size: 0.86rem; font-weight: 700; color: var(--verde); }
+
+@media (max-width: 760px) { .detalle { grid-template-columns: 1fr; } }
+
+/* ---------- avisos (éxito y error) ---------- */
+.aviso { margin-bottom: 0.9rem; padding: 0.6rem 0.8rem; border-radius: 8px; font-size: 0.9rem; }
+.aviso--error { background: rgba(214, 67, 95, 0.1); color: #a8324a; }
+.aviso--exito { background: rgba(95, 158, 31, 0.12); color: #43730f; }
+.aviso--info { background: rgba(31, 168, 224, 0.1); color: #14708f; }
+
+/* ---------- <PaginaEntrar> y <PaginaRegistro> ---------- */
+.formulario { max-width: 400px; margin: 2.4rem auto; padding: 1.8rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); box-shadow: var(--sombra); }
+.formulario__pie { margin: 1rem 0 0; font-size: 0.9rem; text-align: center; color: var(--apagado); }
+.campo { display: block; margin-bottom: 0.9rem; }
+.campo__etiqueta { display: block; margin-bottom: 0.25rem; font-size: 0.85rem; font-weight: 600; color: var(--tinta); }
+.campo__control { width: 100%; padding: 0.55rem 0.7rem; border: 1px solid var(--linea); border-radius: 8px; font: inherit; background: var(--blanco); }
+.campo__control:focus { outline: 2px solid rgba(31, 168, 224, 0.35); border-color: var(--cian); }
+
+/* ---------- <PaginaMisInscripciones> ---------- */
+.inscripciones { display: grid; gap: 0.7rem; margin: 0; padding: 0; list-style: none; }
+.inscripcion { display: flex; align-items: center; gap: 1rem; padding: 0.6rem; background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio); }
+.inscripcion__imagen { width: 72px; height: 72px; border-radius: 10px; object-fit: cover; }
+.inscripcion__clase { font-weight: 700; color: var(--tinta); }
+.inscripcion__meta { font-size: 0.88rem; color: var(--apagado); text-transform: capitalize; }
+
+/* ---------- <Cargando> y <MensajeError> ---------- */
+.cargando { padding: 3rem 0; text-align: center; color: var(--apagado); }
+.cargando__rueda { width: 40px; height: 40px; margin: 0 auto 0.8rem; border: 4px solid var(--linea); border-top-color: var(--cian); border-radius: 50%; animation: girar 0.8s linear infinite; }
+@keyframes girar { to { transform: rotate(360deg); } }
+.error { padding: 1.4rem; text-align: center; background: rgba(214, 67, 95, 0.08); border: 1px solid var(--rojo); border-radius: var(--radio); color: #a8324a; }
+.error .boton { margin-top: 0.8rem; background: var(--rojo); }
+
+/* ---------- <NoEncontrado> y listas vacías ---------- */
+.vacio { padding: 3.5rem 1rem; text-align: center; }
+.vacio__codigo { font-size: 3.4rem; font-weight: 800; line-height: 1; color: var(--linea); }

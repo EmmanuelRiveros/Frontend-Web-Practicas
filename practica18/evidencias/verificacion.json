@@ -1,0 +1,18 @@
+[
+  {
+    "caso": "Módulo de detalle solicitado al visitar la ruta",
+    "resultado": "/assets/PaginaClase-CpXp5OI1.js"
+  },
+  {
+    "caso": "Preview 4173 sin origen permitido",
+    "resultado": "Chrome reportó el bloqueo CORS"
+  },
+  {
+    "caso": "Contador y detalle reactivos",
+    "resultado": "0 → 1 y ✓ Inscrito"
+  },
+  {
+    "caso": "Mis inscripciones lee Zustand y Salir vacía el estado",
+    "resultado": "Lista visible sin GET adicional, contador oculto al salir"
+  }
+]

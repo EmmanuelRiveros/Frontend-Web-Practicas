@@ -1,0 +1,26 @@
+[
+  {
+    "caso": "GET /inscripciones/mias sin JWT",
+    "resultado": 401
+  },
+  {
+    "caso": "Ruta protegida y regreso",
+    "resultado": "/mis-inscripciones?origen=practica#lista"
+  },
+  {
+    "caso": "Inscripción y actualización del cupo",
+    "resultado": "Ana Robles · 20 de 20 lugares → Ana Robles · 19 de 20 lugares"
+  },
+  {
+    "caso": "Inscripción duplicada",
+    "resultado": 409
+  },
+  {
+    "caso": "Cuenta entrenadora al inscribirse",
+    "resultado": 403
+  },
+  {
+    "caso": "JWT inválido en petición local",
+    "resultado": "401, datos de sesión borrados y regreso a Entrar"
+  }
+]

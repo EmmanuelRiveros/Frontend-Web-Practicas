@@ -1,0 +1,94 @@
+{
+  "antes": {
+    "entrada": {
+      "archivo": "assets/index-NyVTXo26.js",
+      "bytes": 328275,
+      "gzip": 105090
+    },
+    "inicio": [
+      {
+        "archivo": "assets/index-NyVTXo26.js",
+        "bytes": 328275,
+        "gzip": 105090
+      }
+    ],
+    "archivos": [
+      {
+        "archivo": "assets/index-NyVTXo26.js",
+        "bytes": 328275,
+        "gzip": 105090
+      }
+    ]
+  },
+  "despues": {
+    "entrada": {
+      "archivo": "assets/index-DMY53Pxb.js",
+      "bytes": 219123,
+      "gzip": 68082
+    },
+    "inicio": [
+      {
+        "archivo": "assets/index-DMY53Pxb.js",
+        "bytes": 219123,
+        "gzip": 68082
+      },
+      {
+        "archivo": "assets/api-DDZL_vq3.js",
+        "bytes": 104006,
+        "gzip": 36965
+      },
+      {
+        "archivo": "assets/PaginaClases-Dlb3g3nO.js",
+        "bytes": 1499,
+        "gzip": 717
+      },
+      {
+        "archivo": "assets/MensajeError-Ch-EqXtx.js",
+        "bytes": 257,
+        "gzip": 196
+      }
+    ],
+    "archivos": [
+      {
+        "archivo": "assets/MensajeError-Ch-EqXtx.js",
+        "bytes": 257,
+        "gzip": 196
+      },
+      {
+        "archivo": "assets/api-DDZL_vq3.js",
+        "bytes": 104006,
+        "gzip": 36965
+      },
+      {
+        "archivo": "assets/index-DMY53Pxb.js",
+        "bytes": 219123,
+        "gzip": 68082
+      },
+      {
+        "archivo": "assets/PaginaClase-CpXp5OI1.js",
+        "bytes": 2556,
+        "gzip": 1191
+      },
+      {
+        "archivo": "assets/PaginaClases-Dlb3g3nO.js",
+        "bytes": 1499,
+        "gzip": 717
+      },
+      {
+        "archivo": "assets/PaginaEntrar-BBvUN1nI.js",
+        "bytes": 1336,
+        "gzip": 648
+      },
+      {
+        "archivo": "assets/PaginaMisInscripciones-DTPfXLXz.js",
+        "bytes": 1076,
+        "gzip": 531
+      },
+      {
+        "archivo": "assets/PaginaRegistro-Dxg13IfG.js",
+        "bytes": 1552,
+        "gzip": 648
+      }
+    ]
+  }
+}

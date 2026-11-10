@@ -1,0 +1,22 @@
+[
+  {
+    "caso": "Credenciales inválidas",
+    "resultado": "401 y mensaje de API"
+  },
+  {
+    "caso": "Persistencia al recargar",
+    "resultado": "Karla Duarte"
+  },
+  {
+    "caso": "Authorization en DevTools",
+    "resultado": "Bearer observado y valor oculto"
+  },
+  {
+    "caso": "Registro de cuenta nueva",
+    "resultado": "201 y sesión automática"
+  },
+  {
+    "caso": "Lectura en jwt.io",
+    "resultado": "Ejemplo público del sitio"
+  }
+]

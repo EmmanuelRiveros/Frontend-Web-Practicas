@@ -1,0 +1,14 @@
+{
+  "header": {
+    "alg": "HS256",
+    "typ": "JWT"
+  },
+  "payload": {
+    "sub": 1,
+    "correo": "[cuenta del seeder]",
+    "rol": "miembro",
+    "miembroId": 1,
+    "iat": 1794338462,
+    "exp": 1794342062
+  }
+}
