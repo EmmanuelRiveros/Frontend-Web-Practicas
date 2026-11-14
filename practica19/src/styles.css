@@ -1,0 +1,243 @@
+/* ==========================================================================
+   Gimnasio Titanes · Panel de administración — hoja de estilos completa.
+   CÓDIGO BASE: ya viene hecha y no se toca en las prácticas 19 a 23.
+   El trabajo es Angular, no CSS.
+   ========================================================================== */
+
+:root {
+  --tinta: #0f2233;
+  --texto: #414c5a;
+  --apagado: #7b8794;
+  --linea: #e2e7ec;
+  --fondo: #f6f7f9;
+  --blanco: #ffffff;
+
+  --lima: #8cc63f;
+  --lima-claro: #f0f7e2;
+  --naranja: #e2761b;
+  --rojo: #c62828;
+  --azul: #1668a8;
+
+  --radio: 12px;
+  --sombra: 0 1px 3px rgba(19, 26, 36, 0.08);
+  --sombra-alta: 0 10px 26px rgba(19, 26, 36, 0.14);
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+  color: var(--texto);
+  background: var(--fondo);
+  line-height: 1.55;
+}
+
+h1, h2, h3 { color: var(--tinta); line-height: 1.2; margin: 0 0 0.4rem; }
+h1 { font-size: 1.7rem; }
+h2 { font-size: 1.2rem; }
+h3 { font-size: 1rem; }
+p { margin: 0 0 0.7rem; }
+a { color: var(--azul); }
+
+/* --- el marco ----------------------------------------------------------- */
+.pagina { max-width: 1040px; margin: 0 auto; padding: 1.4rem 1.2rem 3rem; }
+
+.barra { background: var(--tinta); color: var(--blanco); }
+.barra__interior {
+  max-width: 1040px; margin: 0 auto; padding: 0.6rem 1.2rem;
+  display: flex; align-items: center; gap: 1.2rem; flex-wrap: wrap;
+}
+.barra__marca {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-weight: 800; font-size: 1.05rem; letter-spacing: 0.01em;
+  color: inherit; text-decoration: none;
+}
+.barra__marca img { width: 30px; height: 30px; background: var(--blanco); border-radius: 7px; padding: 3px; }
+.barra__etiqueta {
+  font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em;
+  background: rgba(255, 255, 255, 0.12); padding: 0.15rem 0.55rem; border-radius: 999px;
+}
+.barra__enlaces { display: flex; gap: 0.25rem; margin-left: auto; align-items: center; flex-wrap: wrap; }
+.barra__enlace {
+  color: rgba(255, 255, 255, 0.8); text-decoration: none;
+  padding: 0.32rem 0.8rem; border-radius: 999px; font-size: 0.92rem; font-weight: 600;
+}
+.barra__enlace:hover { background: rgba(255, 255, 255, 0.12); color: var(--blanco); }
+.barra__enlace--activo { background: var(--lima); color: var(--tinta); }
+.barra__quien { font-size: 0.86rem; color: rgba(255, 255, 255, 0.7); margin-left: 0.4rem; }
+
+/* --- tarjetas ----------------------------------------------------------- */
+.tarjeta {
+  background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 1.15rem 1.25rem; box-shadow: var(--sombra); margin-bottom: 1.1rem;
+}
+.tarjeta--angosta { max-width: 420px; }
+
+.rejilla { display: grid; grid-template-columns: repeat(auto-fill, minmax(270px, 1fr)); gap: 1rem; }
+
+.clase {
+  background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 1rem 1.1rem; box-shadow: var(--sombra); text-decoration: none; color: inherit;
+  display: flex; flex-direction: column; gap: 0.35rem;
+  transition: box-shadow 0.15s, transform 0.15s;
+}
+.clase:hover { box-shadow: var(--sombra-alta); transform: translateY(-2px); }
+.clase__nombre { font-weight: 700; color: var(--tinta); font-size: 1.04rem; }
+.clase__desc { font-size: 0.92rem; }
+.clase__pie {
+  margin-top: auto; padding-top: 0.6rem; display: flex; gap: 0.5rem;
+  flex-wrap: wrap; align-items: center;
+}
+
+/* --- horarios ----------------------------------------------------------- */
+.horarios { display: grid; gap: 0.6rem; margin: 0.8rem 0 0; padding: 0; list-style: none; }
+.horario {
+  display: grid; grid-template-columns: 1fr auto; gap: 0.4rem 1rem; align-items: center;
+  padding: 0.7rem 0.9rem; border: 1px solid var(--linea); border-radius: 8px; background: var(--fondo);
+}
+.horario__cuando { font-weight: 700; color: var(--tinta); text-transform: capitalize; }
+.horario__quien { font-size: 0.86rem; color: var(--apagado); }
+
+/* --- etiquetas ---------------------------------------------------------- */
+.etiqueta {
+  display: inline-block; padding: 0.12rem 0.6rem; border-radius: 999px;
+  font-size: 0.74rem; font-weight: 700; letter-spacing: 0.02em;
+  background: var(--lima-claro); color: #46690a;
+}
+.etiqueta--min { background: #eef2f6; color: var(--apagado); }
+.etiqueta--lleno { background: rgba(198, 40, 40, 0.12); color: #8f1d1d; }
+.etiqueta--confirmada { background: var(--lima-claro); color: #46690a; }
+.etiqueta--cancelada { background: #eef2f6; color: var(--apagado); }
+
+/* --- botones ------------------------------------------------------------ */
+.boton {
+  display: inline-flex; align-items: center; justify-content: center; gap: 0.35rem;
+  border: 1px solid transparent; border-radius: 8px; padding: 0.5rem 1.1rem;
+  font: inherit; font-weight: 700; cursor: pointer;
+  background: var(--lima); color: var(--tinta); text-decoration: none;
+}
+.boton:hover:not(:disabled) { filter: brightness(1.07); }
+.boton:disabled { opacity: 0.45; cursor: not-allowed; }
+.boton--secundario { background: var(--blanco); color: var(--tinta); border-color: var(--linea); }
+.boton--peligro { background: var(--rojo); color: var(--blanco); }
+.boton--chico { padding: 0.3rem 0.7rem; font-size: 0.86rem; }
+.acciones { display: flex; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.6rem; }
+
+/* --- formulario --------------------------------------------------------- */
+.campo { display: grid; gap: 0.28rem; margin-bottom: 0.8rem; }
+.campo > label { font-weight: 600; color: var(--tinta); font-size: 0.92rem; }
+input, select, textarea {
+  font: inherit; color: var(--texto); width: 100%;
+  padding: 0.55rem 0.7rem; border: 1px solid var(--linea); border-radius: 8px; background: var(--blanco);
+}
+input:focus, select:focus, textarea:focus {
+  outline: none; border-color: var(--lima); box-shadow: 0 0 0 3px var(--lima-claro);
+}
+input.ng-invalid.ng-touched { border-color: var(--rojo); background: #fdf6f6; }
+.error { color: var(--rojo); font-size: 0.83rem; font-weight: 600; }
+
+/* --- buscador ----------------------------------------------------------- */
+.buscador { display: flex; gap: 0.6rem; align-items: center; margin-bottom: 1rem; flex-wrap: wrap; }
+.buscador input { max-width: 340px; }
+.buscador select { max-width: 200px; }
+.buscador__estado { font-size: 0.86rem; color: var(--apagado); min-height: 1.2rem; }
+
+/* --- estados de una petición -------------------------------------------- */
+.cargando { color: var(--apagado); padding: 1.6rem 0.4rem; text-align: center; }
+.esqueleto {
+  height: 108px; border-radius: var(--radio); border: 1px solid var(--linea);
+  background: linear-gradient(90deg, #f1f3f6 25%, #e7eaef 37%, #f1f3f6 63%);
+  background-size: 400% 100%; animation: brillo 1.3s ease-in-out infinite;
+}
+@keyframes brillo { 0% { background-position: 100% 50%; } 100% { background-position: 0 50%; } }
+
+.aviso {
+  border-radius: 8px; padding: 0.8rem 1rem; margin-bottom: 1rem;
+  border-left: 4px solid var(--azul); background: #eaf3fa; color: var(--tinta); font-size: 0.94rem;
+}
+.aviso--error { border-color: var(--rojo); background: #fdf6f6; }
+.aviso--exito { border-color: var(--lima); background: var(--lima-claro); }
+.aviso--atencion { border-color: var(--naranja); background: #fdf5ec; }
+
+.vacio { text-align: center; color: var(--apagado); padding: 2rem 1rem; }
+
+/* --- tabla -------------------------------------------------------------- */
+table.datos { width: 100%; border-collapse: collapse; font-size: 0.93rem; }
+table.datos th {
+  text-align: left; background: var(--tinta); color: var(--blanco);
+  padding: 0.5rem 0.7rem; font-weight: 600;
+}
+table.datos td { padding: 0.5rem 0.7rem; border-bottom: 1px solid var(--linea); }
+table.datos tr:nth-child(even) td { background: #fafbfc; }
+
+/* --- detalle ------------------------------------------------------------ */
+.dato { display: flex; gap: 0.5rem; font-size: 0.92rem; }
+.dato__clave { color: var(--apagado); }
+.dato__valor { color: var(--tinta); font-weight: 600; }
+
+/* --- encabezado de página ----------------------------------------------- */
+.encabezado {
+  display: flex; align-items: flex-end; justify-content: space-between;
+  gap: 1rem; flex-wrap: wrap; margin-bottom: 1.1rem;
+}
+.encabezado p { margin: 0; color: var(--apagado); }
+
+/* --- resumen (los números de arriba del tablero) ------------------------ */
+.resumen { display: grid; grid-template-columns: repeat(auto-fit, minmax(160px, 1fr)); gap: 0.8rem; margin-bottom: 1.2rem; }
+.resumen__dato {
+  background: var(--blanco); border: 1px solid var(--linea); border-radius: var(--radio);
+  padding: 0.8rem 1rem; box-shadow: var(--sombra);
+}
+.resumen__numero { display: block; font-size: 1.6rem; font-weight: 800; color: var(--tinta); }
+.resumen__texto { font-size: 0.84rem; color: var(--apagado); }
+
+/* --- tablero: lista a la izquierda, detalle a la derecha ----------------- */
+.tablero { display: grid; grid-template-columns: 1fr 300px; gap: 1.2rem; align-items: start; }
+@media (max-width: 860px) { .tablero { grid-template-columns: 1fr; } }
+.lateral { position: sticky; top: 1rem; }
+.lateral img { width: 100%; border-radius: 8px; aspect-ratio: 16 / 10; object-fit: cover; margin-bottom: 0.6rem; }
+
+/* --- tarjeta de una clase (componente <app-tarjeta-clase>) --------------- */
+.tarjeta-clase {
+  background: var(--blanco); border: 2px solid var(--linea); border-radius: var(--radio);
+  overflow: hidden; box-shadow: var(--sombra); cursor: pointer; height: 100%;
+  display: flex; flex-direction: column;
+  transition: box-shadow 0.15s, transform 0.15s, border-color 0.15s;
+}
+.tarjeta-clase:hover { box-shadow: var(--sombra-alta); transform: translateY(-2px); }
+.tarjeta-clase--activa { border-color: var(--lima); }
+.tarjeta-clase img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; display: block; background: var(--linea); }
+.tarjeta-clase__cuerpo { padding: 0.8rem 1rem 1rem; display: flex; flex-direction: column; gap: 0.35rem; flex: 1; }
+.tarjeta-clase__nombre { font-weight: 700; color: var(--tinta); font-size: 1.02rem; margin: 0; }
+.tarjeta-clase__pie { margin-top: auto; display: flex; gap: 0.4rem; flex-wrap: wrap; }
+
+/* una etiqueta por categoría */
+.etiqueta--fuerza { background: #fdeee3; color: #9a4a0c; }
+.etiqueta--cardio { background: #e6f0fa; color: #0f4c7c; }
+.etiqueta--flexibilidad { background: var(--lima-claro); color: #46690a; }
+.etiqueta--larga { background: #f3e8fb; color: #6a2c91; }
+
+/* --- filtro por categoría (componente <app-filtro-categoria>) ----------- */
+.filtro { display: flex; gap: 0.4rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.filtro button {
+  font: inherit; font-size: 0.9rem; font-weight: 600; cursor: pointer;
+  border: 1px solid var(--linea); background: var(--blanco); color: var(--texto);
+  padding: 0.35rem 0.9rem; border-radius: 999px; text-transform: capitalize;
+}
+.filtro button:hover { border-color: var(--lima); }
+.filtro button.activo { background: var(--tinta); color: var(--blanco); border-color: var(--tinta); }
+
+/* --- formulario de clase (Práctica 22) ---------------------------------- */
+.formulario { max-width: 620px; }
+.formulario .fila { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+@media (max-width: 600px) { .formulario .fila { grid-template-columns: 1fr; } }
+select.ng-invalid.ng-touched, textarea.ng-invalid.ng-touched { border-color: var(--rojo); background: #fdf6f6; }
+.contador { font-size: 0.78rem; color: var(--apagado); justify-self: end; }
+.vista-previa { width: 160px; border-radius: 8px; aspect-ratio: 16 / 9; object-fit: cover; }
+
+/* --- login (código base) ------------------------------------------------- */
+.login { min-height: 100vh; display: grid; place-items: center; padding: 1rem; }
+.login .tarjeta { width: 100%; max-width: 380px; }
+.login__marca { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 1rem; }
+.login__marca img { width: 36px; height: 36px; }

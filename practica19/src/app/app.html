@@ -1,0 +1,57 @@
+<header class="barra">
+  <div class="barra__interior">
+    <span class="barra__marca">
+      <img src="/logo.svg" alt="" /> Gimnasio Titanes
+      <span class="barra__etiqueta">Admin</span>
+    </span>
+  </div>
+</header>
+
+<main class="pagina">
+  <div class="encabezado">
+    <div>
+      <h1>Catálogo de clases</h1>
+      <p>Datos locales · Práctica 19</p>
+    </div>
+    <div class="acciones">
+      <button class="boton boton--secundario" (click)="vaciar()">Vaciar</button>
+      <button class="boton" (click)="restaurar()">Restaurar</button>
+    </div>
+  </div>
+
+  <section class="resumen">
+    <div class="resumen__dato">
+      <span class="resumen__numero">{{ clases.length }}</span>
+      <span class="resumen__texto">clases en el catálogo</span>
+    </div>
+    <div class="resumen__dato">
+      <span class="resumen__numero">{{ minutosTotales }}</span>
+      <span class="resumen__texto">minutos a la semana</span>
+    </div>
+    <div class="resumen__dato">
+      <span class="resumen__numero">{{ clasesLargas }}</span>
+      <span class="resumen__texto">clases de una hora o más</span>
+    </div>
+  </section>
+
+  @if (clases.length === 0) {
+  <p class="aviso aviso--error">El catálogo está vacío. Dale a Restaurar.</p>
+  } @else if (clases.length < 5) {
+    <p class="aviso aviso--atencion">Hay pocas clases: sólo {{ clases.length }}.</p>
+  } @else {
+    <p class="aviso aviso--exito">
+      Catálogo completo.
+      @if (clasesLargas > 0) {
+        Ojo: {{ clasesLargas }} clases duran una hora o más.
+      }
+    </p>
+  }
+
+  <div class="rejilla">
+    @for (clase of clases; track clase.id) {
+      <app-tarjeta-clase [clase]="clase" />
+    } @empty {
+      <p class="vacio">No hay clases en el catálogo.</p>
+    }
+  </div>
+</main>

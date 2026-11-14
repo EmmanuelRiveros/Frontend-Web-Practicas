@@ -1,0 +1,36 @@
+> ng build --configuration=development --progress=false
+Initial chunk files | Names         | Raw size
+main.js             | main          |  1.12 MB |
+styles.css          | styles        | 10.98 kB |
+
+                    | Initial total |  1.13 MB
+
+Application bundle generation complete. [1.654 seconds] - 2026-11-14T03:27:51.549Z
+
+▲ [WARNING] NG8109: NG8109: minutosTotales is a function and should be invoked: minutosTotales()}. Find more at https://v22.angular.dev/extended-diagnostics/NG8109 [plugin angular-compiler]
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8109/src/app/app.html:24:48:
+      24 │ ...<span class="resumen__numero">{{ catalogo.minutosTotales }}</span>
+         ╵                                              ~~~~~~~~~~~~~~
+
+  Warning occurs in the template of component App.
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8109/src/app/app.ts:10:15:
+      10 │   templateUrl: './app.html',
+         ╵                ~~~~~~~~~~~~
+
+
+▲ [WARNING] NG8117: NG8117: Function in text interpolation should be invoked: minutosTotales(). Find more at https://v22.angular.dev/extended-diagnostics/NG8117 [plugin angular-compiler]
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8109/src/app/app.html:24:48:
+      24 │ ...<span class="resumen__numero">{{ catalogo.minutosTotales }}</span>
+         ╵                                              ~~~~~~~~~~~~~~
+
+  Warning occurs in the template of component App.
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8109/src/app/app.ts:10:15:
+      10 │   templateUrl: './app.html',
+         ╵                ~~~~~~~~~~~~
+
+
+Output location: E:\Descargas\github\clase\Biblioteca\tmp\p19-20\NG8109\dist\gimnasio-admin

@@ -1,0 +1,32 @@
+> ng build --configuration=development --progress=false
+Application bundle generation failed. [1.155 seconds] - 2026-11-14T03:27:49.132Z
+
+X [ERROR] NG8001: 'app-tarjeta-clase' is not a known element:
+1. If 'app-tarjeta-clase' is an Angular component, then verify that it is included in the '@Component.imports' of this component.
+2. If 'app-tarjeta-clase' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@Component.schemas' of this component to suppress this message. Find more at https://next.angular.dev/errors/NG8001 [plugin angular-compiler]
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8001/src/app/app.html:52:6:
+      52 │       <app-tarjeta-clase [clase]="clase" />
+         ╵       ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Error occurs in the template of component App.
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8001/src/app/app.ts:9:15:
+      9 │   templateUrl: './app.html',
+        ╵                ~~~~~~~~~~~~
+
+
+X [ERROR] NG8002: Can't bind to 'clase' since it isn't a known property of 'app-tarjeta-clase'.
+1. If 'app-tarjeta-clase' is an Angular component and it has 'clase' input, then verify that it is included in the '@Component.imports' of this component.
+2. If 'app-tarjeta-clase' is a Web Component then add 'CUSTOM_ELEMENTS_SCHEMA' to the '@Component.schemas' of this component to suppress this message.
+3. To allow any property add 'NO_ERRORS_SCHEMA' to the '@Component.schemas' of this component. Find more at https://next.angular.dev/errors/NG8002 [plugin angular-compiler]
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8001/src/app/app.html:52:25:
+      52 │       <app-tarjeta-clase [clase]="clase" />
+         ╵                          ~~~~~~~~~~~~~~~
+
+  Error occurs in the template of component App.
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG8001/src/app/app.ts:9:15:
+      9 │   templateUrl: './app.html',
+        ╵                ~~~~~~~~~~~~

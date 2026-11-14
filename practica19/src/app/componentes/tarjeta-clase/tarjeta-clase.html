@@ -1,0 +1,27 @@
+<article class="tarjeta-clase">
+  <img [src]="clase().imagen" [alt]="clase().nombre" />
+
+  <div class="tarjeta-clase__cuerpo">
+    <h3 class="tarjeta-clase__nombre">{{ clase().nombre }}</h3>
+    <p class="clase__desc">{{ clase().descripcion }}</p>
+
+    <p class="clase__desc">
+    @switch (clase().categoria) {
+        @case ('fuerza') { Trae guantes y toalla. }
+        @case ('cardio') { Trae agua: vas a sudar. }
+        @default { Trae tu tapete. }
+    }
+    </p>
+
+    <div class="tarjeta-clase__pie">
+      <span [class]="'etiqueta etiqueta--' + clase().categoria">
+        {{ clase().categoria | titlecase }}
+      </span>
+      <span class="etiqueta etiqueta--min">{{ clase().duracionMin }} min</span>
+
+      @if (clase().duracionMin >= 60) {
+        <span class="etiqueta etiqueta--larga">Larga</span>
+      }
+    </div>
+  </div>
+</article>

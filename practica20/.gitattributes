@@ -1,0 +1,4 @@
+src/styles.css -text
+src/app/datos/clases-locales.ts -text
+src/app/modelos/clase.ts -text
+public/logo.svg -text

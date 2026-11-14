@@ -1,0 +1,62 @@
+<header class="barra">
+  <div class="barra__interior">
+    <span class="barra__marca">
+      <img src="/logo.svg" alt="" /> Gimnasio Titanes
+      <span class="barra__etiqueta">Admin</span>
+    </span>
+  </div>
+</header>
+
+<main class="pagina">
+  <div class="encabezado">
+    <div>
+      <h1>Catálogo de clases</h1>
+      <p>Datos locales · Práctica 20</p>
+    </div>
+  </div>
+
+  <section class="resumen">
+    <div class="resumen__dato">
+      <span class="resumen__numero">{{ catalogo.visibles().length }}</span>
+      <span class="resumen__texto">clases con este filtro</span>
+    </div>
+    <div class="resumen__dato">
+      <span class="resumen__numero">{{ catalogo.minutosTotales() }}</span>
+      <span class="resumen__texto">minutos a la semana</span>
+    </div>
+  </section>
+
+  <app-filtro-categoria />
+
+  <div class="tablero">
+    <div class="rejilla">
+      @for (clase of catalogo.visibles(); track clase.id) {
+
+        <app-tarjeta-clase
+          [clase]="clase"
+          [activa]="clase.id === catalogo.seleccionada()?.id"
+          (seleccionar)="catalogo.seleccionar($event)" />
+      } @empty {
+        <p class="vacio">No hay clases con ese filtro.</p>
+      }
+    </div>
+
+    <aside class="tarjeta lateral">
+      @if (catalogo.seleccionada(); as c) {
+        <img [src]="c.imagen" [alt]="c.nombre" />
+        <h2>{{ c.nombre }}</h2>
+        <p>{{ c.descripcion }}</p>
+        <div class="dato">
+          <span class="dato__clave">Categoría</span>
+          <span class="dato__valor">{{ c.categoria | titlecase }}</span>
+        </div>
+        <div class="dato">
+          <span class="dato__clave">Duración</span>
+          <span class="dato__valor">{{ c.duracionMin }} min</span>
+        </div>
+      } @else {
+        <p class="vacio">Da clic en una clase para ver su detalle.</p>
+      }
+    </aside>
+  </div>
+</main>

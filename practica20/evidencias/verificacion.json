@@ -1,0 +1,17 @@
+{
+  "todas": [
+    8,
+    380
+  ],
+  "cardio": [
+    4,
+    175
+  ],
+  "fuerza": [
+    2,
+    105
+  ],
+  "seleccion": "Ciclismo indoor",
+  "seleccionFueraDelFiltro": null,
+  "teclado": "Enter"
+}

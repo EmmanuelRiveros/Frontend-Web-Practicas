@@ -1,0 +1,11 @@
+<div class="filtro">
+  @for (opcion of opciones; track opcion) {
+    <button
+      type="button"
+      [attr.aria-pressed]="catalogo.categoria() === opcion"
+      [class.activo]="catalogo.categoria() === opcion"
+      (click)="catalogo.filtrar(opcion)">
+      {{ opcion }}
+    </button>
+  }
+</div>

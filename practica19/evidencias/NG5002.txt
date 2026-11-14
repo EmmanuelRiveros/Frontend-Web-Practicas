@@ -1,0 +1,14 @@
+> ng build --configuration=development --progress=false
+Application bundle generation failed. [1.145 seconds] - 2026-11-14T03:27:47.230Z
+
+X [ERROR] NG5002: @for loop must have a "track" expression [plugin angular-compiler]
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG5002/src/app/app.html:51:4:
+      51 │     @for (clase of clases) {
+         ╵     ~~~~~~~~~~~~~~~~~~~~~~~~
+
+  Error occurs in the template of component App.
+
+    E:/Descargas/github/clase/Biblioteca/tmp/p19-20/NG5002/src/app/app.ts:9:15:
+      9 │   templateUrl: './app.html',
+        ╵                ~~~~~~~~~~~~
